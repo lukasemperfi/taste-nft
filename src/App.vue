@@ -1,15 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AppLayout from '@/templates/AppLayout.vue'
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p class="test">
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <AppLayout>
+    <router-view />
+  </AppLayout>
 </template>
 
-<style scoped lang="scss">
-p {
-  font-family: var(--second-family);
-}
-</style>
+<style scoped lang="scss"></style>
