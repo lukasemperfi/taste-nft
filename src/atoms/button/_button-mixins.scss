@@ -1,0 +1,104 @@
+@mixin taste-button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+@mixin taste-button-outline-style {
+  border: 1px solid transparent;
+
+  background:
+    linear-gradient(#1d2228, #1d2228) padding-box,
+    linear-gradient(270deg, #8743ff 0%, #d8c2ff 100%) border-box;
+
+  .taste-btn__label {
+    background: linear-gradient(270deg, #8743ff 0%, #d8c2ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+@mixin taste-button-size($size: 'md') {
+  @if $size == 'sm' {
+    height: 32px;
+    padding: 0 19px;
+    font-size: 12px;
+  } @else if $size == 'md' {
+    height: 40px;
+    padding: 0 27px;
+    font-size: 14px;
+  }
+}
+
+@mixin taste-button-variant($variant: 'primary') {
+  @if $variant == 'primary' {
+    background: linear-gradient(270deg, #8743ff 0%, #4136f1 50%, #8743ff 100%);
+
+    background-size: 200% 200%;
+    background-position: 100% 50%;
+
+    color: #ffffff;
+
+    transition:
+      transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.3s ease,
+      background-position 0.6s ease;
+
+    @media (hover: hover) {
+      &:hover {
+        background-position: 0% 50%;
+      }
+
+      &:active {
+        transform: translateY(0) scale(0.98);
+      }
+    }
+  } @else if $variant == 'outline' {
+    @include taste-button-outline-style;
+  } @else if $variant == 'secondary' {
+    color: transparent;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(270deg, #8743ff 0%, #4136f1 100%);
+      opacity: 0.2;
+      border-radius: inherit;
+      transition: opacity 0.3s ease;
+    }
+
+    .taste-btn__label {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(270deg, #8743ff 0%, #d8c2ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+      }
+
+      &:hover::before {
+        opacity: 0.35;
+      }
+
+      &:active {
+        transform: translateY(0) scale(0.98);
+      }
+    }
+  }
+}
