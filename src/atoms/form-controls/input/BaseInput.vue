@@ -13,7 +13,7 @@ const model = defineModel<string>()
 
 <style lang="scss" scoped>
 .base-input {
-  @include globalMixins.base-input-styles;
+  @include globalMixins.form-control-base;
   height: 40px;
 }
 </style>

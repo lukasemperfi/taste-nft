@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BaseInput from '@/atoms/input/BaseInput.vue'
+import BaseInput from '@/atoms/form-controls/input/BaseInput.vue'
 import Button from '@/atoms/button/Button.vue'
 import { ref } from 'vue'
 const testPlaceholder = 'Начните писать...'
