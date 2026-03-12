@@ -1,11 +1,3 @@
-<template>
-  <button :class="config.classes" :role="config.role" v-bind="$attrs">
-    <span class="taste-btn__label">
-      <slot>Connect wallet</slot>
-    </span>
-  </button>
-</template>
-
 <script setup lang="ts">
 import { computed } from 'vue'
 
@@ -38,6 +30,14 @@ const props = withDefaults(defineProps<Props>(), {
 
 const config = computed(() => getButtonConfig(props.variant, props.size))
 </script>
+
+<template>
+  <button :class="config.classes" :role="config.role" v-bind="$attrs">
+    <span class="taste-btn__label">
+      <slot>Connect wallet</slot>
+    </span>
+  </button>
+</template>
 
 <style scoped lang="scss">
 @use '@/atoms/button/button-mixins' as mixins;
