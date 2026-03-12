@@ -7,9 +7,7 @@ const meta = {
   component: BaseRadio,
   tags: ['autodocs'],
   args: {
-    value: 'option1',
     name: 'example-group',
-    modelValue: '',
     'onUpdate:modelValue': fn(),
   },
 } satisfies Meta<typeof BaseRadio>
@@ -18,10 +16,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {
-    value: 'single',
-    modelValue: 'single',
-  },
+  args: {},
 }
 
 export const Group = {
