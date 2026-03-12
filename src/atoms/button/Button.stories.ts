@@ -11,16 +11,13 @@ const meta: Meta<typeof Button> = {
     variant: {
       control: 'select',
       options: ['primary', 'secondary', 'outline'],
-      description: 'Визуальный стиль кнопки',
     },
     size: {
       control: 'inline-radio',
       options: ['sm', 'md'],
-      description: 'Размер кнопки',
     },
     default: {
       control: 'text',
-      description: 'Текст внутри слота',
       table: {
         category: 'Slots',
       },
