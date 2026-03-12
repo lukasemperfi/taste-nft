@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/vue3-vite'
+import { mergeConfig } from 'vite'
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -9,5 +10,20 @@ const config: StorybookConfig = {
     '@storybook/addon-docs',
   ],
   framework: '@storybook/vue3-vite',
+
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      css: {
+        preprocessorOptions: {
+          scss: {
+            additionalData: `
+              @use "@/assets/styles/_variables.scss" as globalVariables;
+              @use "@/assets/styles/_mixins.scss" as globalMixins;
+            `,
+          },
+        },
+      },
+    })
+  },
 }
 export default config

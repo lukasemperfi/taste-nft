@@ -47,4 +47,15 @@ export default defineConfig({
       },
     ],
   },
+
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @use "@/assets/styles/_variables.scss" as globalVariables;
+          @use "@/assets/styles/_mixins.scss" as globalMixins;
+        `,
+      },
+    },
+  },
 })
