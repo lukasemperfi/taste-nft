@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, type ButtonHTMLAttributes } from 'vue'
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline'
 type ButtonSize = 'sm' | 'md'
@@ -18,7 +18,7 @@ function getButtonConfig(variant: ButtonVariant, size: ButtonSize): ButtonConfig
   }
 }
 
-interface Props {
+interface Props extends /* @vue-ignore */ ButtonHTMLAttributes {
   variant?: ButtonVariant
   size?: ButtonSize
 }

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { fn } from 'storybook/test'
 import Button from './Button.vue'
 
 const meta: Meta<typeof Button> = {
@@ -29,6 +30,7 @@ const meta: Meta<typeof Button> = {
     variant: 'primary',
     size: 'md',
     default: 'Connect wallet',
+    onClick: fn(),
   },
 }
 
