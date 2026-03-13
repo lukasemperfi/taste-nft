@@ -28,16 +28,13 @@ export const Group = {
     template: `
       <div style="display: flex; flex-direction: column; gap: 16px;">
         <div style="display: flex; align-items: center; gap: 10px;">
-          <BaseRadio v-bind="args" value="apple" v-model="args.modelValue" name="fruits" />
-          <span style="color: #fff;">Apple</span>
+          <BaseRadio v-bind="args" value="apple" v-model="args.modelValue" name="fruits">Apple</BaseRadio>
         </div>
         <div style="display: flex; align-items: center; gap: 10px;">
-          <BaseRadio v-bind="args" value="banana" v-model="args.modelValue" name="fruits" />
-          <span style="color: #fff;">Banana</span>
+          <BaseRadio v-bind="args" value="banana" v-model="args.modelValue" name="fruits">Banana</BaseRadio>
         </div>
         <div style="display: flex; align-items: center; gap: 10px;">
-          <BaseRadio v-bind="args" value="orange" v-model="args.modelValue" name="fruits" />
-          <span style="color: #fff;">Orange</span>
+          <BaseRadio v-bind="args" value="orange" v-model="args.modelValue" name="fruits">Orange</BaseRadio>
         </div>
         <div style="margin-top: 10px; padding: 8px; background: #272d35; border-radius: 4px; color: #8743FF; font-size: 12px;">
           Выбрано: {{ args.modelValue || 'ничего не выбрано' }}
