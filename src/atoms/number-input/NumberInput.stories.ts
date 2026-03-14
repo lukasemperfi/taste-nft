@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import NumberInput from './NumberInput.vue'
 
 const meta: Meta<typeof NumberInput> = {
-  title: 'Atoms/NumberInput',
+  title: 'Atoms/FormControls/NumberInput',
   component: NumberInput,
   tags: ['autodocs'],
   argTypes: {
