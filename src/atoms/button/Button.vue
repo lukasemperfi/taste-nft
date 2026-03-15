@@ -13,7 +13,7 @@ function getButtonConfig(variant: ButtonVariant, size: ButtonSize): ButtonConfig
   const baseClass = 'taste-btn'
 
   return {
-    classes: [baseClass, `${baseClass}--${variant}`, `${baseClass}--size-${size}`],
+    classes: [baseClass, `${baseClass}_${variant}`, `${baseClass}_size-${size}`],
     role: 'button',
   }
 }
@@ -45,20 +45,20 @@ const config = computed(() => getButtonConfig(props.variant, props.size))
 .taste-btn {
   @include mixins.taste-button-base;
 
-  &--primary {
+  &_primary {
     @include mixins.taste-button-variant('primary');
   }
-  &--outline {
+  &_outline {
     @include mixins.taste-button-variant('outline');
   }
-  &--secondary {
+  &_secondary {
     @include mixins.taste-button-variant('secondary');
   }
 
-  &--size-sm {
+  &_size-sm {
     @include mixins.taste-button-size('sm');
   }
-  &--size-md {
+  &_size-md {
     @include mixins.taste-button-size('md');
   }
 }

@@ -4,13 +4,14 @@ import VIcon from '@/atoms/icon/VIcon.vue'
 interface Props {
   balance?: string
   tokenIcon?: string
+  size?: 'sm' | 'md'
 }
 
-const { balance = '1,5M', tokenIcon = 'logo-2' } = defineProps<Props>()
+const { balance = '1,5M', tokenIcon = 'logo-2', size = 'md' } = defineProps<Props>()
 </script>
 
 <template>
-  <div class="token-balance">
+  <div :class="['token-balance', `token-balance_size_${size}`]">
     <div class="token-balance__icon-wrapper">
       <VIcon :name="tokenIcon" class="token-balance__icon" />
     </div>
@@ -25,8 +26,6 @@ const { balance = '1,5M', tokenIcon = 'logo-2' } = defineProps<Props>()
   gap: 6px;
 
   &__icon-wrapper {
-    width: 32px;
-    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,8 +35,6 @@ const { balance = '1,5M', tokenIcon = 'logo-2' } = defineProps<Props>()
   }
 
   &__icon {
-    width: 24px;
-    height: 25px;
     border-radius: 50%;
     object-fit: cover;
   }
@@ -45,7 +42,34 @@ const { balance = '1,5M', tokenIcon = 'logo-2' } = defineProps<Props>()
   &__balance-text {
     color: #ffffff;
     font-weight: 600;
-    font-size: 16px;
+  }
+
+  &_size_md {
+    .token-balance__icon-wrapper {
+      width: 32px;
+      height: 32px;
+    }
+    .token-balance_icon {
+      width: 24px;
+      height: 25px;
+    }
+    .token-balance__balance-text {
+      font-size: 16px;
+    }
+  }
+
+  &_size_sm {
+    .token-balance__icon-wrapper {
+      width: 19px;
+      height: 19px;
+    }
+    .token-balance_icon {
+      width: 15px;
+      height: 15px;
+    }
+    .token-balance__balance-text {
+      font-size: 16px;
+    }
   }
 }
 </style>
