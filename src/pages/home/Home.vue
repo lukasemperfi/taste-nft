@@ -3,6 +3,8 @@ import BaseInput from '@/atoms/form-controls/input/BaseInput.vue'
 import Button from '@/atoms/button/Button.vue'
 import { ref } from 'vue'
 import { Tabs } from '@/molecules/tabs'
+import ArtCard from '@/organisms/art-card/ArtCard.vue'
+import ArtCardMenu from '@/organisms/art-card/ArtCardMenu.vue'
 
 const testPlaceholder = 'Начните писать...'
 
@@ -17,24 +19,16 @@ function handleClick() {
 <template>
   <h1>Home</h1>
 
-  <Tabs.Root v-model="activeTab">
-    <Tabs.List>
-      <Tabs.Trigger id="wallet"> Wallet </Tabs.Trigger>
-      <Tabs.Trigger id="history"> History </Tabs.Trigger>
-    </Tabs.List>
-    <div class="tabs-content-container">
-      <Tabs.Panel id="wallet">
-        <div class="wallet-list">
-          <div class="wallet-item">Ethereum Card</div>
-          <div class="wallet-item">Solana Card</div>
-        </div>
-      </Tabs.Panel>
-      <Tabs.Panel id="history">
-        <div class="history-list">
-          <p>No recent transactions found.</p>
-        </div>
-      </Tabs.Panel>
-    </div>
-  </Tabs.Root>
+  <div style="background: #14171b; max-width: 317px; display: flex; justify-content: center">
+    <ArtCard>
+      <template #badge>
+        <span style="color: #000; font-weight: bold">Badge Content</span>
+      </template>
+
+      <template #menu>
+        <ArtCardMenu />
+      </template>
+    </ArtCard>
+  </div>
 </template>
 <style scoped lang="scss"></style>

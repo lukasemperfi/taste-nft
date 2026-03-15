@@ -35,7 +35,6 @@ const { balance = '1,5M', tokenIcon = 'logo-2', size = 'md' } = defineProps<Prop
   }
 
   &__icon {
-    border-radius: 50%;
     object-fit: cover;
   }
 
