@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { defineAsyncComponent, computed, useAttrs } from 'vue'
+import { defineAsyncComponent, computed } from 'vue'
 
 interface Props {
   name: string
 }
 
 const { name = 'default' } = defineProps<Props>()
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const IconComponent = computed(() => {
   return defineAsyncComponent({
