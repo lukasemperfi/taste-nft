@@ -18,17 +18,5 @@ function handleClick() {
 
 <template>
   <h1>Home</h1>
-
-  <div style="background: #14171b; max-width: 317px; display: flex; justify-content: center">
-    <ArtCard>
-      <template #badge>
-        <span style="color: #000; font-weight: bold">Badge Content</span>
-      </template>
-
-      <template #menu>
-        <ArtCardMenu />
-      </template>
-    </ArtCard>
-  </div>
 </template>
 <style scoped lang="scss"></style>

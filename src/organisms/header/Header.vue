@@ -31,7 +31,15 @@ const onClear = () => {
       />
 
       <div class="header__actions">
-        <UserIdentity v-if="true" name="John Doe" username="johndoe" />
+        <div v-if="true" class="header__user-actions">
+          <Button size="sm">+ Add artwork</Button>
+          <UserIdentity
+            name="John Doe"
+            username="johndoe"
+            size="md"
+            avatar-url="https://i.pravatar.cc/150?u=1"
+          />
+        </div>
 
         <Button v-else size="sm">Connect wallet</Button>
       </div>
@@ -82,6 +90,12 @@ const onClear = () => {
     display: flex;
     align-items: center;
     margin-left: 17px;
+  }
+
+  &__user-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
 }
 </style>

@@ -52,6 +52,7 @@ withDefaults(defineProps<Props>(), {
   &__info {
     display: flex;
     flex-direction: column;
+    white-space: nowrap;
   }
 
   &__name {
@@ -71,7 +72,7 @@ withDefaults(defineProps<Props>(), {
     display: inline-block;
   }
 
-  &_size_md {
+  &_size_lg {
     gap: 12px;
 
     .user-identity__avatar-wrapper {
@@ -89,6 +90,29 @@ withDefaults(defineProps<Props>(), {
     .user-identity__username {
       font-size: 14px;
       line-height: 16px;
+      background-image: linear-gradient(270deg, #8743ff 0%, #d8c2ff 100%);
+    }
+  }
+
+  &_size_md {
+    gap: 10px;
+
+    .user-identity__avatar-wrapper {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+    }
+
+    .user-identity__name {
+      font-family: var(--font-family);
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .user-identity__username {
+      font-weight: 500;
+      font-size: 12px;
       background-image: linear-gradient(270deg, #8743ff 0%, #d8c2ff 100%);
     }
   }
