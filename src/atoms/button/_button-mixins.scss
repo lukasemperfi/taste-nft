@@ -12,6 +12,7 @@
   text-decoration: none;
   box-sizing: border-box;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 @mixin taste-button-outline-style {
@@ -59,10 +60,9 @@
       &:hover {
         background-position: 0% 50%;
       }
-
-      &:active {
-        transform: translateY(0) scale(0.98);
-      }
+    }
+    &:active {
+      transform: translateY(0) scale(0.98);
     }
   } @else if $variant == 'outline' {
     @include taste-button-outline-style;

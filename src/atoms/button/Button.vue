@@ -33,9 +33,7 @@ const config = computed(() => getButtonConfig(props.variant, props.size))
 
 <template>
   <button :class="config.classes" :role="config.role" v-bind="$attrs">
-    <span class="taste-btn__label">
-      <slot>Connect wallet</slot>
-    </span>
+    <slot>Connect wallet</slot>
   </button>
 </template>
 

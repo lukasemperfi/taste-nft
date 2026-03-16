@@ -1,12 +1,9 @@
+<script setup lang="ts">
+import Header from '@/organisms/header/Header.vue'
+</script>
 <template>
   <div class="app-layout">
-    <header class="header">
-      <nav>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/profile/me">My Profile</router-link> |
-        <router-link to="/artwork/1">Artwork</router-link>
-      </nav>
-    </header>
+    <Header />
 
     <main class="main-content">
       <slot />
