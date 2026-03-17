@@ -49,7 +49,7 @@ const onClear = () => {
       />
 
       <div class="header__actions">
-        <div v-if="true" class="header__user-actions">
+        <div v-if="false" class="header__user-actions">
           <Button size="sm" class="art-work-button">
             <span class="art-work-button__label">+ Add artwork</span>
             <span class="art-work-button__icon">+</span>

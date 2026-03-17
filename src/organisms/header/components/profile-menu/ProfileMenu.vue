@@ -3,6 +3,8 @@ import BaseDropdown from '@/molecules/dropdown/BaseDropdown.vue'
 import UserIdentity from '@/molecules/user-identity/UserIdentity.vue'
 import VIcon from '@/atoms/icon/VIcon.vue'
 import TokenBalance from '@/atoms/token-balance/TokenBalance.vue'
+import { useWindowSize } from '@vueuse/core'
+import { computed } from 'vue'
 
 interface Props {
   name: string
@@ -14,10 +16,19 @@ interface Props {
 
 defineProps<Props>()
 const emit = defineEmits(['logout', 'profile', 'balance-settings'])
+
+const { width } = useWindowSize()
+
+const dynamicOffset = computed(() => {
+  if (width.value < 1025) {
+    return 16
+  }
+  return 12
+})
 </script>
 
 <template>
-  <BaseDropdown :options="[]" :offset="12" class="profile-menu">
+  <BaseDropdown :options="[]" :offset="dynamicOffset" class="profile-menu">
     <template #trigger="{ toggle, isOpen }">
       <div class="profile-menu__trigger" @click="toggle">
         <UserIdentity :name="name" :username="username" size="md" :avatar-url="avatarUrl" />
@@ -121,6 +132,16 @@ const emit = defineEmits(['logout', 'profile', 'balance-settings'])
     padding-block: 8px;
     color: #ffffff;
     font-family: 'Raleway', sans-serif;
+
+    :deep(.user-identity__avatar-wrapper) {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+    }
+
+    :deep(.user-identity__info) {
+      gap: 0;
+    }
   }
 
   &__header {
@@ -128,7 +149,7 @@ const emit = defineEmits(['logout', 'profile', 'balance-settings'])
     align-items: flex-end;
     cursor: pointer;
     user-select: none;
-    margin-bottom: 17px;
+    margin-bottom: globalFunctions.fluidValue(10px, 17px, 375px, 1336px);
   }
 
   &__balance {
@@ -146,18 +167,18 @@ const emit = defineEmits(['logout', 'profile', 'balance-settings'])
 
   &__address {
     font-weight: 600;
-    font-size: 14px;
+    font-size: globalFunctions.fluidValue(12px, 14px, 375px, 1336px);
     color: rgba(255, 255, 255, 0.5);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 10px;
+    margin-bottom: globalFunctions.fluidValue(6px, 10px, 375px, 1336px);
   }
 
   &__nav {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: globalFunctions.fluidValue(6px, 12px, 375px, 1336px);
   }
 
   &__link {
@@ -166,7 +187,7 @@ const emit = defineEmits(['logout', 'profile', 'balance-settings'])
     padding: 0;
     text-align: left;
     font-weight: 600;
-    font-size: 14px;
+    font-size: globalFunctions.fluidValue(12px, 14px, 375px, 1336px);
     line-height: 18px;
     color: #ffffff;
     cursor: pointer;
