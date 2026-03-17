@@ -66,11 +66,33 @@ const emit = defineEmits(['logout', 'profile', 'balance-settings'])
 
 <style lang="scss" scoped>
 .profile-menu {
+  $profile-bp-lg: 1024px;
+
   &__trigger {
     display: flex;
     align-items: flex-end;
     cursor: pointer;
     user-select: none;
+
+    :deep(.user-identity) {
+      .user-identity__info {
+        @media (max-width: $profile-bp-lg) {
+          display: none;
+        }
+      }
+    }
+
+    .profile-menu__balance {
+      @media (max-width: $profile-bp-lg) {
+        display: none;
+      }
+    }
+
+    .profile-menu__arrow-wrapper {
+      @media (max-width: $profile-bp-lg) {
+        display: none;
+      }
+    }
   }
 
   &__arrow-wrapper {

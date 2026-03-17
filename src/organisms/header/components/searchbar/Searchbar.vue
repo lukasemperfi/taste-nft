@@ -58,20 +58,24 @@ const handleEnter = () => {
   height: 32px;
   position: relative;
 
+  @media (max-width: globalBreakpoints.$breakpoint-md) {
+    height: 28px;
+  }
+
   &__inner {
     display: flex;
     align-items: center;
     width: 100%;
     height: 100%;
     background: #1d2228;
-    border-radius: 12px;
-    padding: 0 12px;
+    border-radius: globalFunctions.fluidValue(8px, 12px, 375px, 1336px);
+    padding: 0 globalFunctions.fluidValue(8px, 12px, 375px, 1336px);
     transition: background 0.2s ease;
   }
 
   &__icon-search {
-    width: 20px;
-    height: 20px;
+    width: globalFunctions.fluidValue(16px, 20px, 375px, 1336px);
+    height: globalFunctions.fluidValue(16px, 20px, 375px, 1336px);
     flex-shrink: 0;
     color: #ffffff;
   }
@@ -82,19 +86,18 @@ const handleEnter = () => {
     background: transparent;
     border: none;
     outline: none;
-    padding: 0 8px 0 8px;
-
+    padding: 0 globalFunctions.fluidValue(6px, 8px, 375px, 1336px);
     font-family: 'Raleway', sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: globalFunctions.fluidValue(11px, 12px, 375px, 1336px);
+    line-height: globalFunctions.fluidValue(13px, 14px, 375px, 1336px);
     color: #ffffff;
 
     &::placeholder {
       font-family: var(--font-family);
       font-weight: 600;
-      font-size: 12px;
+      font-size: globalFunctions.fluidValue(11px, 12px, 375px, 1336px);
       color: rgba(255, 255, 255, 0.5);
     }
   }
@@ -102,7 +105,7 @@ const handleEnter = () => {
   &__clear-button {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: globalFunctions.fluidValue(3px, 4px, 375px, 1336px);
     cursor: pointer;
     flex-shrink: 0;
     margin-left: auto;
@@ -110,8 +113,8 @@ const handleEnter = () => {
 
   &__clear-icon {
     position: relative;
-    width: 11px;
-    height: 11px;
+    width: globalFunctions.fluidValue(9px, 11px, 375px, 1336px);
+    height: globalFunctions.fluidValue(9px, 11px, 375px, 1336px);
 
     &::before,
     &::after {
@@ -119,7 +122,7 @@ const handleEnter = () => {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 10px;
+      width: globalFunctions.fluidValue(8px, 10px, 375px, 1336px);
       height: 1.5px;
       background-color: #8e9093;
       border-radius: 1px;
@@ -137,7 +140,7 @@ const handleEnter = () => {
   &__clear-text {
     font-family: var(--font-family);
     font-weight: 600;
-    font-size: 13px;
+    font-size: globalFunctions.fluidValue(11px, 13px, 375px, 1336px);
     color: rgba(255, 255, 255, 0.5);
     transition: color 0.2s ease;
 

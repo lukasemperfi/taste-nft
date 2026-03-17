@@ -97,6 +97,10 @@ withDefaults(defineProps<Props>(), {
   &_size_md {
     gap: 10px;
 
+    .user-identity__info {
+      gap: 4px;
+    }
+
     .user-identity__avatar-wrapper {
       width: 40px;
       height: 40px;

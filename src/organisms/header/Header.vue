@@ -5,6 +5,7 @@ import SearchBar from './components/searchbar/Searchbar.vue'
 import Button from '@/atoms/button/Button.vue'
 import UserIdentity from '@/molecules/user-identity/UserIdentity.vue'
 import ProfileMenu from './components/profile-menu/ProfileMenu.vue'
+import VIcon from '@/atoms/icon/VIcon.vue'
 
 const currentUser = ref({
   name: 'User Name',
@@ -49,7 +50,10 @@ const onClear = () => {
 
       <div class="header__actions">
         <div v-if="true" class="header__user-actions">
-          <Button size="sm">+ Add artwork</Button>
+          <Button size="sm" class="art-work-button">
+            <span class="art-work-button__label">+ Add artwork</span>
+            <span class="art-work-button__icon">+</span>
+          </Button>
           <ProfileMenu
             v-bind="currentUser"
             @logout="handleLogout"
@@ -58,7 +62,10 @@ const onClear = () => {
           />
         </div>
 
-        <Button v-else size="sm">Connect wallet</Button>
+        <Button v-else size="sm" class="wallet-button">
+          <span class="wallet-button__label">Connect wallet</span>
+          <VIcon name="connection" class="wallet-button__icon" />
+        </Button>
       </div>
     </div>
   </header>
@@ -66,14 +73,15 @@ const onClear = () => {
 
 <style lang="scss" scoped>
 .header {
-  border-radius: 0 0 32px 32px;
+  border-radius: 0 0 globalFunctions.fluidValue(16px, 32px, 375px, 1336px)
+    globalFunctions.fluidValue(16px, 32px, 375px, 1336px);
   background: #30363d;
   position: sticky;
   top: 0;
   left: 0;
   z-index: 9999;
   width: 100%;
-  height: 56px;
+  height: globalFunctions.fluidValue(48px, 56px, 375px, 1336px);
   display: flex;
   align-items: center;
 
@@ -88,8 +96,8 @@ const onClear = () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 47px;
-    height: 47px;
+    flex: 0 0 globalFunctions.fluidValue(36px, 47px, 375px, 1336px);
+    height: globalFunctions.fluidValue(36px, 47px, 375px, 1336px);
 
     img {
       width: 100%;
@@ -99,19 +107,90 @@ const onClear = () => {
   }
 
   :deep(.search-bar) {
-    margin-left: 25px;
+    margin-left: globalFunctions.fluidValue(12px, 25px, 375px, 1336px);
   }
 
   &__actions {
     display: flex;
     align-items: center;
-    margin-left: 17px;
+    margin-left: globalFunctions.fluidValue(8px, 17px, 375px, 1336px);
+  }
+
+  :deep(.user-identity) {
+    .user-identity__avatar-wrapper {
+      @media (max-width: globalBreakpoints.$breakpoint-md) {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+      }
+    }
   }
 
   &__user-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: globalFunctions.fluidValue(10px, 16px, 375px, 1336px);
+  }
+
+  .art-work-button {
+    @media (max-width: globalBreakpoints.$breakpoint-md) {
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border-radius: 8px;
+    }
+
+    &__label {
+      @media (max-width: globalBreakpoints.$breakpoint-md) {
+        display: none;
+      }
+    }
+
+    &__icon {
+      display: none;
+      @media (max-width: globalBreakpoints.$breakpoint-md) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        line-height: 1;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .wallet-button {
+    @media (max-width: globalBreakpoints.$breakpoint-md) {
+      height: 28px;
+      border-radius: 8px;
+    }
+
+    @media (max-width: globalBreakpoints.$breakpoint-sm) {
+      width: 28px;
+      height: 28px;
+      padding: 0;
+    }
+
+    &__label {
+      font-size: globalFunctions.fluidValue(11px, 12px, 375px, 1336px);
+      @media (max-width: globalBreakpoints.$breakpoint-sm) {
+        display: none;
+      }
+    }
+
+    &__icon {
+      display: none;
+      @media (max-width: globalBreakpoints.$breakpoint-sm) {
+        display: block;
+      }
+
+      :deep(path) {
+        @media (max-width: globalBreakpoints.$breakpoint-sm) {
+          fill: #ffffff;
+        }
+      }
+    }
   }
 }
 </style>
