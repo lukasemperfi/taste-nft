@@ -1,0 +1,162 @@
+<script setup lang="ts">
+import BaseDropdown from '@/molecules/dropdown/BaseDropdown.vue'
+import UserIdentity from '@/molecules/user-identity/UserIdentity.vue'
+import VIcon from '@/atoms/icon/VIcon.vue'
+import TokenBalance from '@/atoms/token-balance/TokenBalance.vue'
+
+interface Props {
+  name: string
+  username: string
+  avatarUrl: string
+  address: string
+  balance: string
+}
+
+defineProps<Props>()
+const emit = defineEmits(['logout', 'profile', 'balance-settings'])
+</script>
+
+<template>
+  <BaseDropdown :options="[]" :offset="12" class="profile-menu">
+    <template #trigger="{ toggle, isOpen }">
+      <div class="profile-menu__trigger" @click="toggle">
+        <UserIdentity :name="name" :username="username" size="md" :avatar-url="avatarUrl" />
+        <div class="profile-menu__balance">
+          <span class="profile-menu__balance-label">Balance:</span>
+          <TokenBalance size="xs" />
+        </div>
+        <div class="profile-menu__arrow-wrapper">
+          <VIcon
+            name="polygon"
+            :class="['profile-menu__arrow', { 'profile-menu__arrow_open': isOpen }]"
+          />
+        </div>
+      </div>
+    </template>
+
+    <template #menu="{ isOpen }">
+      <div class="profile-menu__content">
+        <div class="profile-menu__header">
+          <UserIdentity :name="name" :username="username" size="md" :avatar-url="avatarUrl" />
+          <div class="profile-menu__balance">
+            <span class="profile-menu__balance-label">Balance:</span>
+            <TokenBalance size="xs" />
+          </div>
+          <div class="profile-menu__arrow-wrapper">
+            <VIcon
+              name="polygon"
+              :class="['profile-menu__arrow', { 'profile-menu__arrow_open': isOpen }]"
+            />
+          </div>
+        </div>
+        <p class="profile-menu__address">Address: {{ address }}</p>
+        <nav class="profile-menu__nav">
+          <button class="profile-menu__link" @click="emit('profile')">My profile</button>
+          <button class="profile-menu__link" @click="emit('balance-settings')">
+            Balance settings
+          </button>
+          <button class="profile-menu__link profile-menu__link_logout" @click="emit('logout')">
+            Log out
+          </button>
+        </nav>
+      </div>
+    </template>
+  </BaseDropdown>
+</template>
+
+<style lang="scss" scoped>
+.profile-menu {
+  &__trigger {
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__arrow-wrapper {
+    width: 13px;
+    align-self: center;
+  }
+
+  &__arrow {
+    width: 13px;
+    height: 5px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+    align-self: center;
+    opacity: 0.5;
+
+    &_open {
+      transform: scaleY(-1);
+    }
+  }
+
+  &__content {
+    max-width: 267px;
+    background: #30363d;
+    border-radius: 12px;
+    padding-inline: 12px;
+    padding-block: 8px;
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 17px;
+  }
+
+  &__balance {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transform: translateX(-6px);
+
+    &-label {
+      font-family: var(--font-family);
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  &__address {
+    font-weight: 600;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__link {
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &_logout {
+      color: #ff5e54;
+    }
+  }
+}
+</style>

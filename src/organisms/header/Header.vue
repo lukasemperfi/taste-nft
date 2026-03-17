@@ -4,6 +4,23 @@ import { ref } from 'vue'
 import SearchBar from './components/searchbar/Searchbar.vue'
 import Button from '@/atoms/button/Button.vue'
 import UserIdentity from '@/molecules/user-identity/UserIdentity.vue'
+import ProfileMenu from './components/profile-menu/ProfileMenu.vue'
+
+const currentUser = ref({
+  name: 'User Name',
+  username: 'username',
+  avatarUrl: 'https://i.pravatar.cc/150?u=1',
+  address: '0c0xcx1cx606g4516x51g1...',
+  balance: '1,5M',
+})
+
+const handleLogout = () => {
+  console.log('User logged out')
+}
+
+const handleOpenProfile = () => {
+  console.log('Redirecting to profile...')
+}
 
 const searchQuery = ref('')
 
@@ -33,11 +50,11 @@ const onClear = () => {
       <div class="header__actions">
         <div v-if="true" class="header__user-actions">
           <Button size="sm">+ Add artwork</Button>
-          <UserIdentity
-            name="John Doe"
-            username="johndoe"
-            size="md"
-            avatar-url="https://i.pravatar.cc/150?u=1"
+          <ProfileMenu
+            v-bind="currentUser"
+            @logout="handleLogout"
+            @profile="handleOpenProfile"
+            @balance-settings="() => console.log('Settings')"
           />
         </div>
 
@@ -50,7 +67,6 @@ const onClear = () => {
 <style lang="scss" scoped>
 .header {
   border-radius: 0 0 32px 32px;
-  box-shadow: 0 25px 40px 0 rgba(0, 0, 0, 0.05);
   background: #30363d;
   position: sticky;
   top: 0;

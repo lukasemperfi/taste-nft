@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
+import { useFloating, offset, flip, shift, autoUpdate } from '@floating-ui/vue'
+import { onClickOutside } from '@vueuse/core'
 
 interface Option {
   label: string
@@ -16,35 +18,41 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const selected = defineModel<Option | null>({ default: null })
-
 const isOpen = ref(false)
-const triggerRef = ref<HTMLElement | null>(null)
 
-const menuStyles = ref({
-  top: '0px',
-  left: '0px',
-  width: '0px',
+const reference = ref<HTMLElement | null>(null)
+const floating = ref<HTMLElement | null>(null)
+
+// const { floatingStyles } = useFloating(reference, floating, {
+//   placement: 'bottom',
+//   whileElementsMounted: autoUpdate,
+//   middleware: [
+//     offset(props.offset),
+//     flip({
+//       fallbackPlacements: ['bottom-start', 'bottom-end'],
+//       fallbackStrategy: 'initialPlacement',
+//       padding: 10,
+//     }),
+//     shift({ padding: 10 }),
+//   ],
+// })
+
+const { floatingStyles } = useFloating(reference, floating, {
+  placement: 'bottom',
+  whileElementsMounted: autoUpdate,
+  middleware: [
+    offset(props.offset),
+    flip({
+      fallbackPlacements: ['top', 'bottom'],
+      padding: 10,
+    }),
+    shift({
+      padding: 10,
+    }),
+  ],
 })
 
-const updatePosition = () => {
-  if (!triggerRef.value) {
-    return
-  }
-
-  const rect = triggerRef.value.getBoundingClientRect()
-
-  menuStyles.value = {
-    top: `${rect.bottom + props.offset}px`,
-    left: `${rect.left}px`,
-    width: `${rect.width}px`,
-  }
-}
-
 const toggle = () => {
-  if (!isOpen.value) {
-    updatePosition()
-  }
-
   isOpen.value = !isOpen.value
 }
 
@@ -53,51 +61,36 @@ const select = (option: Option) => {
   isOpen.value = false
 }
 
-const handleClickOutside = (event: MouseEvent) => {
-  const target = event.target as Node
-
-  const isOutsideTrigger = triggerRef.value && !triggerRef.value.contains(target)
-
-  const menu = document.querySelector('.dropdown-content')
-
-  const isOutsideMenu = menu && !menu.contains(target)
-
-  if (isOutsideTrigger && isOutsideMenu) {
-    isOpen.value = false
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('click', handleClickOutside)
-
-  window.addEventListener('scroll', updatePosition, true)
-  window.addEventListener('resize', updatePosition)
-})
-
-onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside)
-  window.removeEventListener('scroll', updatePosition, true)
-  window.removeEventListener('resize', updatePosition)
-})
+onClickOutside(
+  floating,
+  () => {
+    if (isOpen.value) isOpen.value = false
+  },
+  { ignore: [reference] },
+)
 </script>
 
 <template>
-  <div ref="triggerRef" class="dropdown-shell">
+  <div ref="reference" class="dropdown-shell">
     <slot name="trigger" :toggle="toggle" :is-open="isOpen" :selected="selected" />
 
     <Teleport to="body">
       <div
         v-if="isOpen"
+        ref="floating"
         class="dropdown-content"
         :style="{
-          position: 'fixed',
-          top: menuStyles.top,
-          left: menuStyles.left,
-          width: menuStyles.width,
+          ...floatingStyles,
           zIndex: 99999,
         }"
       >
-        <slot name="menu" :options="options" :select="select" :selected="selected" />
+        <slot
+          name="menu"
+          :options="options"
+          :select="select"
+          :selected="selected"
+          :is-open="isOpen"
+        />
       </div>
     </Teleport>
   </div>

@@ -4,7 +4,7 @@ import VIcon from '@/atoms/icon/VIcon.vue'
 interface Props {
   balance?: string
   tokenIcon?: string
-  size?: 'sm' | 'md'
+  size?: 'xs' | 'sm' | 'md'
 }
 
 const { balance = '1,5M', tokenIcon = 'logo-2', size = 'md' } = defineProps<Props>()
@@ -68,6 +68,23 @@ const { balance = '1,5M', tokenIcon = 'logo-2', size = 'md' } = defineProps<Prop
     }
     .token-balance__balance-text {
       font-size: 16px;
+    }
+  }
+
+  &_size_xs {
+    gap: 3px;
+    .token-balance__icon-wrapper {
+      width: 16px;
+      height: 16px;
+    }
+
+    .v-icon {
+      width: 12px;
+      height: 13px;
+    }
+
+    .token-balance__balance-text {
+      font-size: 12px;
     }
   }
 }
