@@ -51,7 +51,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
           </header>
 
           <div class="modal-content">
-            <slot />
+            <slot name="content" />
           </div>
         </div>
       </div>
@@ -90,15 +90,15 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
   max-height: 90vh;
   max-width: 90vw;
 
-  padding-bottom: 24px;
+  padding-top: 45px;
+  padding-bottom: 31px;
 }
 
 .modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 32px 40px;
-  min-height: 80px;
+  padding-inline: 24px;
 
   &__center {
     flex: 1;
@@ -152,7 +152,6 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
   flex: 1;
   overflow-y: auto;
   color: #ffffff;
-  padding: 0 40px 0;
 
   @include globalMixins.custom-scrollbar;
 }

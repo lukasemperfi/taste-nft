@@ -6,6 +6,7 @@ import Button from '@/atoms/button/Button.vue'
 import UserIdentity from '@/molecules/user-identity/UserIdentity.vue'
 import ProfileMenu from './components/profile-menu/ProfileMenu.vue'
 import VIcon from '@/atoms/icon/VIcon.vue'
+import ConnectWalletModal from './components/connect-wallet-modal/ConnectWalletModal.vue'
 
 const currentUser = ref({
   name: 'User Name',
@@ -14,6 +15,12 @@ const currentUser = ref({
   address: '0c0xcx1cx606g4516x51g1...',
   balance: '1,5M',
 })
+
+const isOpenConnectWalletModal = ref(false)
+
+const toogleConnectWalletModal = () => {
+  isOpenConnectWalletModal.value = !isOpenConnectWalletModal.value
+}
 
 const handleLogout = () => {
   console.log('User logged out')
@@ -62,10 +69,11 @@ const onClear = () => {
           />
         </div>
 
-        <Button v-else size="sm" class="wallet-button">
+        <Button v-else size="sm" class="wallet-button" @click="toogleConnectWalletModal">
           <span class="wallet-button__label">Connect wallet</span>
           <VIcon name="connection" class="wallet-button__icon" />
         </Button>
+        <ConnectWalletModal v-model="isOpenConnectWalletModal" />
       </div>
     </div>
   </header>
