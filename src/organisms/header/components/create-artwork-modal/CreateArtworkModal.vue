@@ -5,6 +5,7 @@ import { ref, reactive, watch } from 'vue'
 import Button from '@/atoms/button/Button.vue'
 import { refManualReset } from '@vueuse/core'
 import FileUploader from '@/atoms/form-controls/file-uploader/FileUploader.vue'
+import VIcon from '@/atoms/icon/VIcon.vue'
 
 const isOpen = defineModel<boolean>()
 
@@ -15,6 +16,7 @@ const initialForm = {
   copies: 1,
   minSum: 10000000,
   file: null as File | null,
+  previewUrl: null as string | null,
   isLoading: false,
 }
 
@@ -30,6 +32,20 @@ const nextStep = () => {
 const prevStep = () => {
   if (currentStep.value > 1) {
     currentStep.value--
+  }
+}
+
+const onFileChange = (e: Event) => {
+  const target = e.target as HTMLInputElement
+  const selectedFile = target.files?.[0]
+
+  if (selectedFile) {
+    console.log('File selected:', selectedFile)
+
+    form.value.file = selectedFile
+    form.value.previewUrl = URL.createObjectURL(selectedFile)
+
+    console.log('Preview URL:', form.value.previewUrl)
   }
 }
 
@@ -72,14 +88,14 @@ watch(isOpen, (val) => {
 
           <main class="create-artwork__content">
             <section v-if="currentStep === 1" class="create-artwork__step upload-step">
-              <h3 class="upload-step__subtitle">Upload the artwork you will be selling</h3>
+              <h3 class="create-artwork__subtitle">Upload the artwork you will be selling</h3>
               <FileUploader
                 variant="full"
                 v-model="form.file"
                 :max-size-mb="100"
                 :max-files="1"
                 accept="image/*"
-                @change="form.isLoading = true"
+                @change="onFileChange"
               />
             </section>
 
@@ -88,10 +104,19 @@ watch(isOpen, (val) => {
                 Censor the public version of artwork, if it contains 18+ content
               </p>
               <div class="edit-step__preview">
+                <div class="edit-step__img-wrapper">
+                  <img
+                    v-if="form.previewUrl"
+                    :src="form.previewUrl"
+                    alt="Preview"
+                    class="edit-step__image"
+                  />
+                  <div v-else class="edit-step__placeholder">No image selected</div>
+                </div>
                 <div class="edit-step__tools">
-                  <button class="edit-step__tool-btn"></button>
-                  <button class="edit-step__tool-btn"></button>
-                  <button class="edit-step__tool-btn"></button>
+                  <button class="edit-step__tool-btn"><VIcon name="image" /></button>
+                  <button class="edit-step__tool-btn"><VIcon name="sticker" /></button>
+                  <button class="edit-step__tool-btn"><VIcon name="blur" /></button>
                 </div>
               </div>
             </section>
@@ -164,9 +189,22 @@ watch(isOpen, (val) => {
 
 <style lang="scss" scoped>
 .modal-content {
-  padding-inline: 27px;
+  padding-inline: globalFunctions.fluidValue(16px, 27px, 375px, 1336px);
 }
 .create-artwork {
+  &__subtitle {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 12px;
+
+    @media (max-width: globalBreakpoints.$breakpoint-sm) {
+      font-size: 14px;
+    }
+  }
+
   &__header {
     display: flex;
     justify-content: center;
@@ -178,15 +216,18 @@ watch(isOpen, (val) => {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%;
 
     &__steps {
       display: flex;
       gap: 6px;
+      justify-content: center;
     }
     &__item {
       height: 5px;
       background: rgba(255, 255, 255, 0.2);
-      width: 150px;
+      flex: 1 1 150px;
+      max-width: 150px;
       border-radius: 12px;
 
       &_active {
@@ -203,17 +244,35 @@ watch(isOpen, (val) => {
   }
 
   .upload-step {
-    &__subtitle {
-      font-family: var(--font-family);
-      font-weight: 600;
-      font-size: 16px;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 12px;
-    }
-
     :deep(.file-uploader) {
       height: 360px;
+    }
+  }
+
+  .edit-step {
+    &__preview {
+    }
+
+    &__img-wrapper {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    &__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &__tools {
+      margin-top: 16px;
+      display: flex;
+      gap: 21px;
+    }
+
+    &__tool-btn {
     }
   }
 
@@ -228,16 +287,6 @@ watch(isOpen, (val) => {
   }
 }
 
-.edit-step {
-  &__preview {
-  }
-
-  &__tools {
-  }
-
-  &__tool-btn {
-  }
-}
 .details-step {
   &__form {
   }

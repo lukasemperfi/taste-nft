@@ -123,6 +123,10 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
     font-size: 24px;
     line-height: 28px;
     color: #ffffff;
+
+    @media (max-width: globalBreakpoints.$breakpoint-sm) {
+      font-size: 22px;
+    }
   }
 
   &__left,

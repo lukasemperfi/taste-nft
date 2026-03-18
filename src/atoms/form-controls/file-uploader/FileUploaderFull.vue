@@ -104,6 +104,10 @@ defineEmits<FileUploaderEvents>()
     font-size: 14px;
     line-height: 1.2;
     margin: 0;
+
+    @media (max-width: globalBreakpoints.$breakpoint-sm) {
+      font-size: 12px;
+    }
   }
 
   &__specs {
