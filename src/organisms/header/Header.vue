@@ -7,6 +7,7 @@ import UserIdentity from '@/molecules/user-identity/UserIdentity.vue'
 import ProfileMenu from './components/profile-menu/ProfileMenu.vue'
 import VIcon from '@/atoms/icon/VIcon.vue'
 import ConnectWalletModal from './components/connect-wallet-modal/ConnectWalletModal.vue'
+import { useAuth } from '@/helpers/useAuth'
 
 const currentUser = ref({
   name: 'User Name',
@@ -18,12 +19,14 @@ const currentUser = ref({
 
 const isOpenConnectWalletModal = ref(false)
 
+const { isAuth, login, logout } = useAuth()
+
 const toogleConnectWalletModal = () => {
   isOpenConnectWalletModal.value = !isOpenConnectWalletModal.value
 }
 
 const handleLogout = () => {
-  console.log('User logged out')
+  logout()
 }
 
 const handleOpenProfile = () => {
@@ -56,7 +59,7 @@ const onClear = () => {
       />
 
       <div class="header__actions">
-        <div v-if="false" class="header__user-actions">
+        <div v-if="isAuth" class="header__user-actions">
           <Button size="sm" class="art-work-button">
             <span class="art-work-button__label">+ Add artwork</span>
             <span class="art-work-button__icon">+</span>

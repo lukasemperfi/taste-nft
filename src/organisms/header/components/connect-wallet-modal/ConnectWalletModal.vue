@@ -4,19 +4,20 @@ import GuideStepCard from './GuideStepCard.vue'
 import Button from '@/atoms/button/Button.vue'
 import { ref } from 'vue'
 import Loader from '@/atoms/loader/Loader.vue'
+import { useAuth } from '@/helpers/useAuth'
+import { delay } from '@/helpers/delay'
 
 const isOpen = defineModel<boolean>()
 const isLoading = ref(false)
+const { isAuth, login, logout } = useAuth()
 
 const handleConnectWallet = async () => {
-  console.log('Connect wallet')
   isLoading.value = true
   await delay(2000)
+  login()
   isOpen.value = false
   isLoading.value = false
 }
-
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 </script>
 
 <template>
