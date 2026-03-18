@@ -11,10 +11,6 @@ const emit = defineEmits(['play'])
 
 <template>
   <div class="guide-card">
-    <div class="guide-card__badge">
-      <span class="guide-card__step-num">{{ stepNumber }}.</span>
-    </div>
-
     <div class="guide-card__preview">
       <img v-if="videoThumbnail" :src="videoThumbnail" class="guide-card__image" alt="Thumbnail" />
       <div v-else class="guide-card__placeholder"></div>
@@ -22,6 +18,10 @@ const emit = defineEmits(['play'])
       <button class="guide-card__play-btn" @click="emit('play')">
         <span class="guide-card__play-icon"></span>
       </button>
+
+      <div class="guide-card__badge">
+        <span class="guide-card__step-num">{{ stepNumber }}.</span>
+      </div>
     </div>
 
     <p class="guide-card__description">
@@ -67,7 +67,6 @@ const emit = defineEmits(['play'])
     height: globalFunctions.fluidValue(80px, 90px, 375px, 1336px);
     background: #c4c4c4;
     border-radius: globalFunctions.fluidValue(12px, 16px, 375px, 1336px);
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;

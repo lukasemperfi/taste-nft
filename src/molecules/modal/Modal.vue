@@ -33,11 +33,11 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
       <div v-if="isOpen" class="modal-overlay" @click.self="close">
         <div class="modal-container">
           <header class="modal-header">
-            <div class="modal-header__left">
+            <div v-if="$slots['header-left']" class="modal-header__left">
               <slot name="header-left" />
             </div>
 
-            <div class="modal-header__center">
+            <div v-if="$slots['header-center']" class="modal-header__center">
               <slot name="header-center" />
             </div>
 
@@ -74,6 +74,11 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
   backdrop-filter: blur(4px);
   padding-top: 5vh;
   padding-bottom: 5vh;
+
+  @media (max-width: globalBreakpoints.$breakpoint-sm) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 .modal-container {
@@ -85,13 +90,21 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
   flex-direction: column;
   overflow: hidden;
   font-family: 'Raleway', sans-serif;
-  max-width: 653px;
+  width: 654px;
   min-height: 200px;
   max-height: 90vh;
-  max-width: 90vw;
-
   padding-top: 45px;
   padding-bottom: 31px;
+
+  @media (max-width: globalBreakpoints.$breakpoint-sm) {
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
 }
 
 .modal-header {
@@ -99,6 +112,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
   align-items: center;
   justify-content: space-between;
   padding-inline: 24px;
+  position: relative;
 
   &__center {
     flex: 1;
@@ -115,6 +129,9 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
     flex: 0 0 40px;
     display: flex;
     align-items: center;
+    position: absolute;
+    right: 24px;
+    left: 24px;
   }
 
   &__right {
