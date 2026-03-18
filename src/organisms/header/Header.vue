@@ -7,6 +7,7 @@ import UserIdentity from '@/molecules/user-identity/UserIdentity.vue'
 import ProfileMenu from './components/profile-menu/ProfileMenu.vue'
 import VIcon from '@/atoms/icon/VIcon.vue'
 import ConnectWalletModal from './components/connect-wallet-modal/ConnectWalletModal.vue'
+import CreateArtworkModal from './components/create-artwork-modal/CreateArtworkModal.vue'
 import { useAuth } from '@/helpers/useAuth'
 
 const currentUser = ref({
@@ -18,11 +19,16 @@ const currentUser = ref({
 })
 
 const isOpenConnectWalletModal = ref(false)
+const isOpenCreateArtworkModal = ref(false)
 
 const { isAuth, login, logout } = useAuth()
 
-const toogleConnectWalletModal = () => {
-  isOpenConnectWalletModal.value = !isOpenConnectWalletModal.value
+const openConnectWalletModal = () => {
+  isOpenConnectWalletModal.value = true
+}
+
+const openCreateArtworkModal = () => {
+  isOpenCreateArtworkModal.value = true
 }
 
 const handleLogout = () => {
@@ -61,7 +67,9 @@ const onClear = () => {
       <div class="header__actions">
         <div v-if="isAuth" class="header__user-actions">
           <Button size="sm" class="art-work-button">
-            <span class="art-work-button__label">+ Add artwork</span>
+            <span class="art-work-button__label" @click="openCreateArtworkModal"
+              >+ Add artwork</span
+            >
             <span class="art-work-button__icon">+</span>
           </Button>
           <ProfileMenu
@@ -72,14 +80,15 @@ const onClear = () => {
           />
         </div>
 
-        <Button v-else size="sm" class="wallet-button" @click="toogleConnectWalletModal">
+        <Button v-else size="sm" class="wallet-button" @click="openConnectWalletModal">
           <span class="wallet-button__label">Connect wallet</span>
           <VIcon name="connection" class="wallet-button__icon" />
         </Button>
-        <ConnectWalletModal v-model="isOpenConnectWalletModal" />
       </div>
     </div>
   </header>
+  <ConnectWalletModal v-model="isOpenConnectWalletModal" />
+  <CreateArtworkModal v-model="isOpenCreateArtworkModal" />
 </template>
 
 <style lang="scss" scoped>
