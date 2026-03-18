@@ -13,6 +13,20 @@ defineEmits<FileUploaderEvents>()
     @dragover.prevent
     @drop.prevent="(e) => !previewUrl && $emit('drop', e.dataTransfer?.files || null)"
   >
+    <svg class="file-uploader__border-svg">
+      <rect
+        x="0.5"
+        y="0.5"
+        width="calc(100% - 1px)"
+        height="calc(100% - 1px)"
+        rx="16"
+        ry="16"
+        fill="none"
+        stroke="#c4c4c4"
+        stroke-width="1"
+        stroke-dasharray="8"
+      />
+    </svg>
     <div v-if="previewUrl" class="file-uploader__preview-container">
       <div
         class="file-uploader__canvas"
@@ -54,20 +68,24 @@ defineEmits<FileUploaderEvents>()
 <style lang="scss" scoped>
 .file-uploader {
   position: relative;
-  width: 599px;
-  height: 360px;
-  border: 1px dashed #c4c4c4;
+  width: 100%;
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
   transition: border-color 0.2s;
 
-  &:hover {
-    border-color: #a0a0a0;
+  &__border-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
   }
 
   &_state-uploaded {
-    border-style: none;
+    .file-uploader__border-svg {
+      display: none;
+    }
   }
 
   &__placeholder {
@@ -89,7 +107,7 @@ defineEmits<FileUploaderEvents>()
   }
 
   &__specs {
-    margin-bottom: 24px;
+    margin-bottom: 29px;
   }
 
   &__preview-container {
@@ -124,8 +142,10 @@ defineEmits<FileUploaderEvents>()
       background-color 0.2s,
       transform 0.1s;
 
-    &:hover {
-      background: #ff5e54;
+    @media (hover: hover) {
+      &:hover {
+        background: #ff5e54;
+      }
     }
 
     &:active {

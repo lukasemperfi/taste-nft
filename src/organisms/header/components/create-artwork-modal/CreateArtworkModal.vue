@@ -4,6 +4,7 @@ import ModalContent from '@/molecules/modal/ModalContent.vue'
 import { ref, reactive, watch } from 'vue'
 import Button from '@/atoms/button/Button.vue'
 import { refManualReset } from '@vueuse/core'
+import FileUploader from '@/atoms/form-controls/file-uploader/FileUploader.vue'
 
 const isOpen = defineModel<boolean>()
 
@@ -13,6 +14,7 @@ const initialForm = {
   type: 'auction',
   copies: 1,
   minSum: 10000000,
+  file: null as File | null,
   isLoading: false,
 }
 
@@ -53,7 +55,7 @@ watch(isOpen, (val) => {
   <Modal v-bind="$attrs" v-model="isOpen">
     <template #header-center>Creating artwork</template>
     <template #content>
-      <ModalContent>
+      <div class="modal-content">
         <div class="create-artwork">
           <header class="create-artwork__header">
             <div class="create-artwork__stepper stepper">
@@ -70,15 +72,15 @@ watch(isOpen, (val) => {
 
           <main class="create-artwork__content">
             <section v-if="currentStep === 1" class="create-artwork__step upload-step">
-              <p class="create-artwork__subtitle">Upload the artwork you will be selling</p>
-              <div class="upload-step__dropzone">
-                <div class="upload-step__info">
-                  <p>1500x500px</p>
-                  <p>JPG, PNG or GIF</p>
-                  <p>100MB max size</p>
-                </div>
-                <p class="upload-step__hint">Drag and drop an image here, or click to browse</p>
-              </div>
+              <h3 class="upload-step__subtitle">Upload the artwork you will be selling</h3>
+              <FileUploader
+                variant="full"
+                v-model="form.file"
+                :max-size-mb="100"
+                :max-files="1"
+                accept="image/*"
+                @change="form.isLoading = true"
+              />
             </section>
 
             <section v-if="currentStep === 2" class="create-artwork__step edit-step">
@@ -155,37 +157,28 @@ watch(isOpen, (val) => {
             </Button>
           </footer>
         </div>
-      </ModalContent>
+      </div>
     </template>
   </Modal>
 </template>
 
 <style lang="scss" scoped>
+.modal-content {
+  padding-inline: 27px;
+}
 .create-artwork {
   &__header {
     display: flex;
     justify-content: center;
-  }
-
-  &__stepper {
-  }
-
-  &__content {
-  }
-
-  &__step {
-  }
-
-  &__subtitle {
-  }
-
-  &__footer {
-  }
-
-  &__action {
+    padding-top: 16px;
+    margin-bottom: 20px;
   }
 
   .stepper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
     &__steps {
       display: flex;
       gap: 6px;
@@ -201,20 +194,40 @@ watch(isOpen, (val) => {
       }
     }
     &__info {
+      font-family: var(--font-family);
+      font-weight: 600;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      align-self: center;
     }
   }
+
+  .upload-step {
+    &__subtitle {
+      font-family: var(--font-family);
+      font-weight: 600;
+      font-size: 16px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 12px;
+    }
+
+    :deep(.file-uploader) {
+      height: 360px;
+    }
+  }
+
+  &__footer {
+    margin-top: 31px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__action {
+    padding-inline: 47px;
+  }
 }
 
-.upload-step {
-  &__dropzone {
-  }
-
-  &__info {
-  }
-
-  &__hint {
-  }
-}
 .edit-step {
   &__preview {
   }
