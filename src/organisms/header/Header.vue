@@ -19,7 +19,7 @@ const currentUser = ref({
 })
 
 const isOpenConnectWalletModal = ref(false)
-const isOpenCreateArtworkModal = ref(true)
+const isOpenCreateArtworkModal = ref(false)
 
 const { isAuth, login, logout } = useAuth()
 
@@ -66,10 +66,8 @@ const onClear = () => {
 
       <div class="header__actions">
         <div v-if="isAuth" class="header__user-actions">
-          <Button size="sm" class="art-work-button">
-            <span class="art-work-button__label" @click="openCreateArtworkModal"
-              >+ Add artwork</span
-            >
+          <Button size="sm" class="art-work-button" @click="openCreateArtworkModal">
+            <span class="art-work-button__label">+ Add artwork</span>
             <span class="art-work-button__icon">+</span>
           </Button>
           <ProfileMenu
