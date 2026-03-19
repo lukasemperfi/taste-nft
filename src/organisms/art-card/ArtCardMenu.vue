@@ -40,7 +40,9 @@ const getDelay = (index: number) => {
         :style="{ transitionDelay: getDelay(index) }"
         @click.stop="emit('action-click', action.emit)"
       >
-        <VIcon :name="action.icon" :style="{ color: action.color }" />
+        <span class="art-card-menu__icon" :style="{ color: action.color }">
+          <VIcon :name="action.icon" :style="{ color: action.color }" />
+        </span>
       </button>
     </div>
   </div>
@@ -109,15 +111,27 @@ const getDelay = (index: number) => {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 
     opacity: 0;
     transform: translateY(-44px) scale(0.5);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition:
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.3s ease;
 
     :deep(svg) {
       width: 14px;
       height: 14px;
     }
+  }
+
+  &__icon {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   &__open {

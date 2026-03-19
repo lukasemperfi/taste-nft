@@ -86,6 +86,7 @@ onUnmounted(revokeUrl)
 <style lang="scss" scoped>
 .file-uploader {
   font-family: 'Raleway', sans-serif;
+  height: 100%;
 
   &__input {
     display: none;

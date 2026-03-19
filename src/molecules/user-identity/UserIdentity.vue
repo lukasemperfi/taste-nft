@@ -60,6 +60,7 @@ withDefaults(defineProps<Props>(), {
     font-family: 'Raleway', sans-serif;
     font-style: normal;
     font-weight: 700;
+    color: #ffffff;
   }
 
   &__username {
@@ -84,7 +85,6 @@ withDefaults(defineProps<Props>(), {
     .user-identity__name {
       font-size: 18px;
       line-height: 21px;
-      color: #ffffff;
     }
 
     .user-identity__username {
@@ -111,7 +111,6 @@ withDefaults(defineProps<Props>(), {
       font-family: var(--font-family);
       font-weight: 700;
       font-size: 16px;
-      color: #fff;
     }
 
     .user-identity__username {
@@ -133,7 +132,6 @@ withDefaults(defineProps<Props>(), {
     .user-identity__name {
       font-size: 14px;
       line-height: 16px;
-      color: #1d2228;
     }
 
     .user-identity__username {

@@ -43,11 +43,23 @@ export const OverlappingContent: Story = {
     },
     template: `
       <div style="display: flex; flex-direction: column; gap: 20px;">
-        <Dropdown v-bind="args" v-model="selected" />
-        <div style="position: absolute; top: 65px; left: 0; z-index: 1000; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px; color: #666;">
-          <h4 style="color: #fff; margin-bottom: 8px;">Content Below</h4>
+        <div style="padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px; color: #666;">
+          <h4 style="color: #fff; margin-bottom: 8px;">Content Above</h4>
+          <p>This content should be covered by the dropdown menu if the z-index and absolute positioning are correct. The dropdown should not push this block down when it opens.</p>
+          <p>This content should be covered by the dropdown menu if the z-index and absolute positioning are correct. The dropdown should not push this block down when it opens.</p>
+          <p>This content should be covered by the dropdown menu if the z-index and absolute positioning are correct. The dropdown should not push this block down when it opens.</p>
+          <p>This content should be covered by the dropdown menu if the z-index and absolute positioning are correct. The dropdown should not push this block down when it opens.</p>
           <p>This content should be covered by the dropdown menu if the z-index and absolute positioning are correct. The dropdown should not push this block down when it opens.</p>
         </div>
+        <Dropdown v-bind="args" v-model="selected" />
+        <div style=" padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px; color: #666;">
+          <h4 style="color: #fff; margin-bottom: 8px;">Content Below</h4>
+          <p>This content should be covered by the dropdown menu if the z-index and absolute positioning are correct. The dropdown should not push this block down when it opens.</p>
+          <p>This content should be covered by the dropdown menu if the z-index and absolute positioning are correct. The dropdown should not push this block down when it opens.</p>
+          <p>This content should be covered by the dropdown menu if the z-index and absolute positioning are correct. The dropdown should not push this block down when it opens.</p>
+          <p>This content should be covered by the dropdown menu if the z-index and absolute positioning are correct. The dropdown should not push this block down when it opens.</p>
+          <p>This content should be covered by the dropdown menu if the z-index and absolute positioning are correct. The dropdown should not push this block down when it opens.</p>
+          </div>
       </div>
     `,
   }),

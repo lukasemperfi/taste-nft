@@ -29,9 +29,16 @@ type Story = StoryObj<typeof meta>
 export const CompactEmpty: Story = {
   args: {
     variant: 'compact',
-    maxSizeMb: 5,
+    maxSizeMb: 100,
     accept: 'image/*',
   },
+  render: (args) => ({
+    components: { FileUploader },
+    setup() {
+      return { args }
+    },
+    template: '<div style="width: 100%; height: 100px;"> <FileUploader v-bind="args" /> </div>',
+  }),
 }
 
 export const FullEmpty: Story = {
@@ -45,4 +52,11 @@ export const FullEmpty: Story = {
       default: 'dark',
     },
   },
+  render: (args) => ({
+    components: { FileUploader },
+    setup() {
+      return { args }
+    },
+    template: '<div style="width: 360px; height: 360px;"> <FileUploader v-bind="args" /> </div>',
+  }),
 }

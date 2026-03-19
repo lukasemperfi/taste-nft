@@ -67,8 +67,10 @@
   } @else if $variant == 'outline' {
     @include taste-button-outline-style;
   } @else if $variant == 'secondary' {
-    color: transparent;
-
+    background: linear-gradient(270deg, #8743ff 0%, #d8c2ff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     &::before {
       content: '';
       position: absolute;

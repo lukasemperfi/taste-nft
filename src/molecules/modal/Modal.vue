@@ -134,13 +134,13 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
     flex: 0 0 40px;
     display: flex;
     align-items: center;
-    position: absolute;
-    right: 24px;
-    left: 24px;
   }
 
   &__right {
     justify-content: flex-end;
+    position: absolute;
+    right: 24px;
+    left: 24px;
   }
 }
 

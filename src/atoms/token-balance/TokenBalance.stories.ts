@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import TokenBalance from './TokenBalance.vue'
 
-const iconOptions = ['logo-1', 'logo-2', 'logo-3']
+const iconOptions = ['logo-2', 'logo-3']
 const meta: Meta<typeof TokenBalance> = {
   title: 'Atoms/TokenBalance',
   component: TokenBalance,

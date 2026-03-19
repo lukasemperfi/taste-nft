@@ -30,7 +30,8 @@ export const ConnectingWallet: Story = {
             Connecting wallet
           </template>
           
-          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 20px;">
+          <template #content>
+          <div style="padding-inline: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 20px;">
              <p style="text-align: center; color: rgba(255,255,255,0.6)">
                Please select a wallet to connect to the platform
              </p>
@@ -38,6 +39,7 @@ export const ConnectingWallet: Story = {
                 Wallet List Placeholders
              </div>
           </div>
+          </template>
         </Modal>
       </div>
     `,
@@ -69,7 +71,8 @@ export const LongContent: Story = {
             Scroll Test
           </template>
           
-          <div style="white-space: pre-wrap; line-height: 1.6;">
+          <template #content>
+          <div style="white-space: pre-wrap; line-height: 1.6; padding-inline: 24px;">
              <p style="color: rgba(255,255,255,0.8)">
                {{ longText }}
              </p>
@@ -77,6 +80,7 @@ export const LongContent: Story = {
                 --- End of Content ---
              </div>
           </div>
+          </template>
         </Modal>
       </div>
     `,

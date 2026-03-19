@@ -35,7 +35,4 @@ export const Small: Story = {
     username: 'username',
     avatarUrl: 'https://i.pravatar.cc/150?u=2',
   },
-  globals: {
-    backgrounds: { value: 'light' },
-  },
 }
