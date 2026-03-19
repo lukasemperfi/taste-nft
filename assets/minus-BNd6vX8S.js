@@ -1,1 +1,0 @@
-import{o as t,c as o,a as n}from"./index-BU4aCwiQ.js";const r={xmlns:"http://www.w3.org/2000/svg",width:"13",height:"5",fill:"none",viewBox:"0 0 13 5"};function s(l,e){return t(),o("svg",r,[...e[0]||(e[0]=[n("path",{fill:"#fff",d:"M0 4.84V0h12.12v4.84z"},null,-1)])])}const i={render:s};export{i as default,s as render};
