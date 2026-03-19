@@ -44,16 +44,6 @@ export const Default: Story = {
   }),
 }
 
-export const USDT: Story = {
-  args: {
-    symbol: 'USDT',
-    fiatValue: '1.00$',
-    balance: '25,430',
-    tokenIcon: 'https://cryptologos.cc/logos/tether-usdt-logo.svg?v=024',
-  },
-  render: Default.render,
-}
-
 export const LongValues: Story = {
   args: {
     symbol: 'LONGTOKENNAME',

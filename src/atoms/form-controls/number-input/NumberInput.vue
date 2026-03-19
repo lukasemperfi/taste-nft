@@ -16,7 +16,7 @@ const {
 
 const model = defineModel<number>({
   default: 0,
-  required: true,
+  // required: true,
   set(val) {
     let newValue = Number(val)
     if (isNaN(newValue)) {
@@ -68,13 +68,12 @@ const isMaxReached = computed(() => model.value >= max)
 
 <style lang="scss" scoped>
 .number-input {
-  @include globalMixins.form-control-base;
   display: flex;
   padding: 0;
   border-radius: 0;
 
   &__field {
-    width: 40px;
+    width: 37px;
     border: none;
     text-align: center;
     outline: none;

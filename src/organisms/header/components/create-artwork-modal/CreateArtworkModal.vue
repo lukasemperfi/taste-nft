@@ -6,6 +6,13 @@ import Button from '@/atoms/button/Button.vue'
 import { refManualReset } from '@vueuse/core'
 import FileUploader from '@/atoms/form-controls/file-uploader/FileUploader.vue'
 import VIcon from '@/atoms/icon/VIcon.vue'
+import FormField from '@/atoms/form-controls/form-field/FormField.vue'
+import BaseInput from '@/atoms/form-controls/input/BaseInput.vue'
+import BaseTextarea from '@/atoms/form-controls/textarea/BaseTextarea.vue'
+import BaseRadio from '@/atoms/form-controls/radio/BaseRadio.vue'
+import NumberInput from '@/atoms/form-controls/number-input/NumberInput.vue'
+import TokenInput from '@/molecules/token-input/TokenInput.vue'
+import DataTimePicker from '@/atoms/form-controls/date-time-picker/DateTimePicker.vue'
 
 const isOpen = defineModel<boolean>()
 
@@ -17,11 +24,14 @@ const initialForm = {
   minSum: 10000000,
   file: null as File | null,
   previewUrl: null as string | null,
+  date: '2020-02-22',
+  time: '23:45',
   isLoading: false,
 }
 
-const currentStep = refManualReset(1)
-const form = refManualReset({ ...initialForm })
+const currentStep = ref(1)
+const form = reactive({ ...initialForm })
+const showTimer = ref(false)
 
 const nextStep = () => {
   if (currentStep.value < 3) {
@@ -42,28 +52,32 @@ const onFileChange = (e: Event) => {
   if (selectedFile) {
     console.log('File selected:', selectedFile)
 
-    form.value.file = selectedFile
-    form.value.previewUrl = URL.createObjectURL(selectedFile)
+    form.file = selectedFile
+    form.previewUrl = URL.createObjectURL(selectedFile)
 
-    console.log('Preview URL:', form.value.previewUrl)
+    console.log('Preview URL:', form.previewUrl)
   }
 }
 
 const finishCreating = async () => {
   await new Promise((resolve) => setTimeout(resolve, 1000))
   isOpen.value = false
-  console.log('Artwork created:', form.value)
+  console.log('Artwork created:', form)
 }
 
 const resetState = () => {
-  currentStep.reset()
-  form.reset()
+  currentStep.value = 1
+  Object.assign(form, initialForm)
 }
 
 watch(isOpen, (val) => {
   if (!val) {
     resetState()
   }
+})
+
+watch(form, (newVal) => {
+  console.log('form changed:', newVal)
 })
 </script>
 
@@ -123,58 +137,77 @@ watch(isOpen, (val) => {
 
             <section v-if="currentStep === 3" class="create-artwork__step details-step">
               <div class="details-step__form">
-                <div class="details-step__field">
-                  <label class="details-step__label">Artwork name</label>
-                  <input type="text" class="details-step__input" placeholder="Enter name" />
+                <FormField class="details-step__field details-step__field_name">
+                  <template #label>Artwork name</template>
+                  <BaseInput v-model="form.name" type="text" class="details-step__input" />
+                </FormField>
+
+                <FormField class="details-step__field details-step__field_description">
+                  <template #label>Description</template>
+                  <BaseTextarea v-model="form.description" class="details-step__textarea" />
+                </FormField>
+
+                <FormField class="details-step__field details-step__field_type">
+                  <template #label>Type</template>
+                  <div class="details-step__radio-group">
+                    <BaseRadio
+                      v-model="form.type"
+                      value="auction"
+                      name="type"
+                      class="details-step__radio"
+                      >Auction</BaseRadio
+                    >
+                    <BaseRadio
+                      v-model="form.type"
+                      value="sale"
+                      name="type"
+                      class="details-step__radio"
+                      >Sale</BaseRadio
+                    >
+                  </div>
+                </FormField>
+
+                <div class="details-step__row details-step__row_copies">
+                  <FormField class="details-step__field details-step__field_copies">
+                    <template #label>Copies</template>
+                    <NumberInput v-model="form.copies" class="details-step__counter" />
+                  </FormField>
+                  <FormField class="details-step__field details-step__field_min-sum">
+                    <template #label>Min.sum</template>
+                    <TokenInput
+                      v-model="form.minSum"
+                      class="details-step__price-input"
+                      symbol="TASTE"
+                      fiat-value="1308.54$"
+                    />
+                  </FormField>
                 </div>
 
-                <div class="details-step__field">
-                  <label class="details-step__label">Description</label>
-                  <textarea
-                    class="details-step__textarea"
-                    placeholder="Enter description"
-                  ></textarea>
-                </div>
-
-                <div class="details-step__row">
-                  <div class="details-step__type">
-                    <label class="details-step__label">Type</label>
-                    <div class="details-step__radio-group">
-                      <label><input type="radio" name="type" checked /> Auction</label>
-                      <label><input type="radio" name="type" /> Sale</label>
+                <FormField class="details-step__field details-step__field_timer">
+                  <template #label>Selling will end</template>
+                  <div class="details-step__timer">
+                    <button
+                      v-if="!showTimer"
+                      class="details-step__set-timer-button"
+                      @click="showTimer = true"
+                    >
+                      Set timer
+                    </button>
+                    <div v-if="showTimer" class="details-step__timer-form">
+                      <DataTimePicker v-model:date="form.date" v-model:time="form.time" />
+                      <span class="details-step__time-left">05h 02m 41s</span>
+                      <button class="details-step__delete-timer-button" @click="showTimer = false">
+                        <VIcon name="cross" /> delete timer
+                      </button>
                     </div>
                   </div>
-                </div>
-
-                <div class="details-step__row">
-                  <div class="details-step__field">
-                    <label class="details-step__label">Copies</label>
-                    <div class="details-step__counter">
-                      <button>-</button>
-                      <span>1</span>
-                      <button>+</button>
-                    </div>
-                  </div>
-                  <div class="details-step__field">
-                    <label class="details-step__label">Min.sum</label>
-                    <div class="details-step__price-input">
-                      <input type="number" value="10000000" />
-                      <span class="details-step__currency">TASTE</span>
-                      <span class="details-step__usd">(1308.54$)</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="details-step__timer">
-                  <p>Selling will end</p>
-                  <button class="details-step__link">Set timer</button>
-                </div>
+                </FormField>
               </div>
             </section>
           </main>
 
           <footer class="create-artwork__footer">
-            <Button v-if="currentStep < 3" class="create-artwork__action" @click="currentStep++">
+            <Button v-if="currentStep < 3" class="create-artwork__action" @click="nextStep">
               Next step
             </Button>
             <Button v-else class="create-artwork__action" @click="finishCreating">
@@ -250,9 +283,6 @@ watch(isOpen, (val) => {
   }
 
   .edit-step {
-    &__preview {
-    }
-
     &__img-wrapper {
       position: relative;
       aspect-ratio: 1;
@@ -271,63 +301,108 @@ watch(isOpen, (val) => {
       display: flex;
       gap: 21px;
     }
-
-    &__tool-btn {
-    }
   }
 
   &__footer {
-    margin-top: 31px;
+    margin-top: 32px;
     display: flex;
     justify-content: center;
   }
 
   &__action {
-    padding-inline: 47px;
+    width: 157px;
   }
 }
 
 .details-step {
-  &__form {
+  &__row {
+    display: flex;
+
+    &_copies {
+      gap: 30px;
+      margin-bottom: 24px;
+    }
   }
 
   &__field {
-  }
+    &_name {
+      margin-bottom: 24px;
+    }
 
-  &__label {
-  }
+    &_description {
+      margin-bottom: 32px;
+    }
 
-  &__input {
-  }
+    &_type {
+      gap: 12px;
+      margin-bottom: 32px;
+    }
 
-  &__textarea {
-  }
-
-  &__row {
-  }
-
-  &__type {
+    &_copies {
+      :deep(.number-input) {
+        height: 40px;
+      }
+    }
   }
 
   &__radio-group {
-  }
-
-  &__counter {
-  }
-
-  &__price-input {
-  }
-
-  &__currency {
-  }
-
-  &__usd {
+    display: flex;
+    gap: 15px;
   }
 
   &__timer {
+    height: 40px;
+    display: flex;
+    align-items: center;
   }
 
-  &__link {
+  &__set-timer-button {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 16px;
+    background: linear-gradient(270deg, #8743ff 0%, #d8c2ff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &__timer-form {
+    display: flex;
+    align-items: center;
+  }
+
+  &__time-left {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-left: 13px;
+  }
+
+  &__delete-timer-button {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    color: #ff5e54;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 16px;
+
+    :deep(path) {
+      fill: #ff5e54;
+    }
+  }
+
+  :deep(.datetime-picker) {
+    .datetime-picker__field_type_date {
+      width: 127px;
+      padding: 0;
+    }
+
+    .datetime-picker__field_type_time {
+      padding: 11px;
+    }
   }
 }
 </style>

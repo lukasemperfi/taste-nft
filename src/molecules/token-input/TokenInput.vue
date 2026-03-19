@@ -7,13 +7,20 @@ interface Props {
   fiatValue?: string
   balance?: string
   tokenIcon?: string
+  showBalance?: boolean
 }
 
-const { symbol = 'BNB', fiatValue = '1308.54$', balance = '1,5M', tokenIcon } = defineProps<Props>()
+const {
+  symbol = 'BNB',
+  fiatValue = '1308.54$',
+  balance = '1,5M',
+  tokenIcon,
+  showBalance = false,
+} = defineProps<Props>()
 
 const model = defineModel<number | string>({
   default: 0,
-  required: true,
+  // required: true,
   set(val) {
     const numericValue = String(val).replace(/[^\d]/g, '')
     return numericValue
@@ -35,7 +42,7 @@ const cutedSymbol = computed(() => {
       <input v-model="model" type="text" class="token-input__input" inputmode="numeric" />
       <span class="token-input__symbol">{{ cutedSymbol }}</span>
     </div>
-    <TokenBalance :balance="balance" :token-icon="tokenIcon" />
+    <TokenBalance v-if="showBalance" :balance="balance" :token-icon="tokenIcon" />
     <div class="token-input__info">
       <span class="token-input__fiat">({{ fiatValue }})</span>
     </div>
