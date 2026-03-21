@@ -1,6 +1,22 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import ArtDetails from '@/organisms/art-details/ArtDetails.vue'
+import ArtDetailsTitle from '@/organisms/art-details/ArtDetailsTitle.vue'
+import ArtDetailsField from '@/organisms/art-details/ArtDetailsField.vue'
+import ArtDetailsActions from '@/organisms/art-details/ArtDetailsActions.vue'
+import UserIdentity from '@/molecules/user-identity/UserIdentity.vue'
+import TokenBalance from '@/atoms/token-balance/TokenBalance.vue'
+import Button from '@/atoms/button/Button.vue'
 import ArtworkSlider from '../../components/artwork-slider/ArtworkSlider.vue'
+const artData = ref({
+  title: 'WFH - art name',
+  copyNumber: 2,
+  copyTotal: 10,
+  description: `The iconic meme that became a viral Internet sensation and an indispensable part of the gachimuchi music genre. This was taken when I was very young and in my full "performance" attire. That part of me now "lives" on platforms like Twitch, YouTube, and Bilibili (B 站)`,
+  name: 'User Name',
+  username: 'username',
+  avatarUrl: 'https://i.pravatar.cc/150?u=1',
+})
 
 const artworks = ref([
   {
@@ -85,7 +101,42 @@ const artworks = ref([
 <template>
   <section class="hero">
     <div class="hero__container app-container">
-      <div class="hero__col-1"></div>
+      <div class="hero__col-1">
+        <ArtDetails>
+          <template #header>
+            <UserIdentity
+              :name="artData.name"
+              :username="artData.username"
+              :avatar-url="artData.avatarUrl"
+              size="lg"
+            />
+          </template>
+
+          <ArtDetailsTitle :title="artData.title" />
+
+          <ArtDetailsField label="Description:">
+            {{ artData.description }}
+          </ArtDetailsField>
+
+          <template #footer>
+            <ArtDetailsField label="Sold for:">
+              <TokenBalance size="sm" />
+            </ArtDetailsField>
+
+            <div
+              class="art-details__actions"
+              style="display: flex; gap: 12px; align-items: flex-end"
+            >
+              <Button> View </Button>
+              <ArtDetailsActions
+                @share="() => console.log('Shared!')"
+                @external="() => console.log('Link opened!')"
+                @menu="() => console.log('Menu opened!')"
+              />
+            </div>
+          </template>
+        </ArtDetails>
+      </div>
       <div class="hero__col-2">
         <ArtworkSlider :items="artworks" />
       </div>
@@ -94,16 +145,29 @@ const artworks = ref([
 </template>
 <style scoped lang="scss">
 .hero {
+  --bottom-padding: 29px;
   &__container {
     display: flex;
     gap: 16px;
-    padding-block: 24px;
+    padding-bottom: var(--bottom-padding);
   }
 
   &__col-1 {
     flex: 1 1 516px;
-
     max-width: 516px;
+    display: flex;
+    align-items: flex-end;
+
+    :deep(.art-details__footer) {
+      .art-field {
+        display: flex;
+        gap: 8px;
+      }
+    }
+
+    :deep(.taste-btn) {
+      padding: 0px 32px;
+    }
   }
 
   &__col-2 {

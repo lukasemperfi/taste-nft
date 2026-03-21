@@ -108,7 +108,7 @@ const updatePaginationWidth = (swiper: any) => {
 
 .custom-pagination {
   position: absolute;
-  bottom: -24px;
+  bottom: calc(var(--bottom-padding) * -1);
   left: 0;
   display: flex;
   justify-content: space-between;

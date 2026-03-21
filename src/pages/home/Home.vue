@@ -3,6 +3,12 @@ import Hero from './sections/hero/Hero.vue'
 </script>
 
 <template>
-  <Hero />
+  <div class="home">
+    <Hero />
+  </div>
 </template>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+:deep(.hero) {
+  margin-top: 40px;
+}
+</style>
