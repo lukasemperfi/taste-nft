@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { EffectCreative, Pagination } from 'swiper/modules'
+import { Pagination, EffectCreative } from 'swiper/modules'
 
-// Стили Swiper
 import 'swiper/css'
-import 'swiper/css/effect-creative'
 import 'swiper/css/pagination'
+import 'swiper/css/effect-creative'
 
 interface Artwork {
   id: number
@@ -15,36 +14,59 @@ interface Artwork {
   price: string
 }
 
-const props = defineProps<{
-  items: Artwork[]
-}>()
-
+const props = defineProps<{ items: Artwork[] }>()
 const modules = [EffectCreative, Pagination]
+
+const updatePaginationWidth = (swiper: any) => {
+  const activeSlide = swiper.slides[swiper.activeIndex]
+
+  if (!activeSlide) {
+    return
+  }
+
+  const width = activeSlide.offsetWidth
+
+  const paginationEl = swiper.pagination?.el
+
+  if (!paginationEl) {
+    return
+  }
+
+  paginationEl.style.width = `${width}px`
+}
 </script>
 
 <template>
   <swiper
-    :grab-cursor="true"
     :effect="'creative'"
+    :grabCursor="true"
     :loop="true"
-    :modules="modules"
-    :slides-per-view="1"
-    :watch-slides-progress="true"
-    :looped-slides="5"
-    :creative-effect="{
-      limitProgress: 5,
-      perspective: true,
+    :slidesPerView="'auto'"
+    :loopAdditionalSlides="3"
+    :watchSlidesProgress="true"
+    :creativeEffect="{
+      limitProgress: 3,
+
       prev: {
-        translate: ['-10%', 0, -200],
-        scale: 0.85,
-        opacity: 0.7,
+        shadow: false,
+        translate: [0, 0, -200],
+        opacity: 0,
+        scale: 0.6,
       },
       next: {
-        translate: ['20%', 0, -150],
-        scale: 0.85,
+        translate: ['26.5%', 0, -150],
         opacity: 1,
+        scale: 1,
       },
     }"
+    :pagination="{
+      el: '.custom-pagination',
+      clickable: true,
+    }"
+    @init="updatePaginationWidth"
+    @slideChange="updatePaginationWidth"
+    @resize="updatePaginationWidth"
+    :modules="modules"
     class="artwork-swiper"
   >
     <swiper-slide v-for="item in items" :key="item.id" class="artwork-slide">
@@ -53,7 +75,6 @@ const modules = [EffectCreative, Pagination]
       </div>
     </swiper-slide>
   </swiper>
-
   <div class="custom-pagination"></div>
 </template>
 
@@ -61,60 +82,51 @@ const modules = [EffectCreative, Pagination]
 .artwork-swiper {
   width: 100%;
   height: 100%;
-
-  overflow: visible !important;
-
-  :deep(.swiper-slide) {
-    overflow: visible;
-    backface-visibility: hidden;
-  }
-
-  :deep(.swiper-wrapper) {
-    transform-style: preserve-3d;
-  }
-
-  :deep(.swiper-slide-shadow-creative) {
-    background: none !important;
-  }
 }
 
-.artwork-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+:deep(.swiper-slide) {
+  aspect-ratio: 1;
+  width: 38vw !important;
+  max-width: 519px;
+  max-height: 519px;
 }
 
 .artwork-card {
-  width: 100%;
-  max-width: 519px;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1;
   background: #c4c4c4;
-  border-radius: 1px;
-  box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.5);
-  position: relative;
+  border-radius: 4px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 
   &__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 }
 
 .custom-pagination {
+  position: absolute;
+  bottom: calc(var(--bottom-padding) * -1);
+  left: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 10px;
   height: 5px;
 
   :deep(.swiper-pagination-bullet) {
-    width: 95px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 99px;
+    width: 60px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
     opacity: 1;
     margin: 0 !important;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+
+    &.swiper-pagination-bullet-active {
+      background: #fff;
+    }
   }
 }
 </style>

@@ -3,7 +3,7 @@ interface Props {
   name: string
   username: string
   avatarUrl?: string
-  size?: 'md' | 'sm'
+  size?: 'md' | 'sm' | 'lg'
 }
 
 withDefaults(defineProps<Props>(), {
