@@ -1,15 +1,8 @@
 <script setup lang="ts">
 import TokenBalance from '@/atoms/token-balance/TokenBalance.vue'
+import { Artwork } from '@/helpers/artworks'
 
-interface Props {
-  image?: string
-  title?: string
-  endingIn?: string
-  tokenIcon?: string
-  balance?: string
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Artwork>(), {
   image: '',
   title: 'WFH - art name',
   endingIn: '05h 02m 41s',

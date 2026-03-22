@@ -186,7 +186,7 @@ const artworks = ref([
         }
       }
 
-      :deep(.taste-btn) {
+      .taste-btn {
         padding: 0px 32px;
       }
     }

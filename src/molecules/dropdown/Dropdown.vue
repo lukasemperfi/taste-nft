@@ -10,10 +10,13 @@ interface Option {
 interface Props {
   options: Option[]
   placeholder?: string
+  triggerClass?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  options: [],
   placeholder: 'Recently added',
+  triggerclass: '',
 })
 
 const selected = defineModel<Option | null>({ default: null })
@@ -24,8 +27,7 @@ const selected = defineModel<Option | null>({ default: null })
     <template #trigger="{ toggle, isOpen, selected }">
       <button
         type="button"
-        class="dropdown__button"
-        :class="{ dropdown__button_active: isOpen }"
+        :class="[triggerClass, 'dropdown__button', { dropdown__button_active: isOpen }]"
         @click="toggle"
       >
         <span class="dropdown__label">
@@ -59,7 +61,7 @@ const selected = defineModel<Option | null>({ default: null })
     justify-content: space-between;
     width: 168px;
     height: 40px;
-    padding: 0 20px;
+    padding: 0 23px;
     background: #1d2228;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 99px;

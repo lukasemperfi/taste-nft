@@ -23,20 +23,6 @@ const isOpen = ref(false)
 const reference = ref<HTMLElement | null>(null)
 const floating = ref<HTMLElement | null>(null)
 
-// const { floatingStyles } = useFloating(reference, floating, {
-//   placement: 'bottom',
-//   whileElementsMounted: autoUpdate,
-//   middleware: [
-//     offset(props.offset),
-//     flip({
-//       fallbackPlacements: ['bottom-start', 'bottom-end'],
-//       fallbackStrategy: 'initialPlacement',
-//       padding: 10,
-//     }),
-//     shift({ padding: 10 }),
-//   ],
-// })
-
 const { floatingStyles } = useFloating(reference, floating, {
   placement: 'bottom',
   whileElementsMounted: autoUpdate,

@@ -35,7 +35,6 @@ export const Default: Story = {
     },
     template: `
       <BaseDropdown v-bind="args" v-model="selected" :options="options">
-        
         <template #trigger="{ toggle, isOpen, selected }">
           <button class="dark-rounded-btn" @click="toggle" :class="{ 'active': isOpen }">
             <span class="label">{{ selected?.label || args.placeholder || 'Recently added' }}</span>
