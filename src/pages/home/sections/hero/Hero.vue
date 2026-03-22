@@ -146,10 +146,16 @@ const artworks = ref([
 <style scoped lang="scss">
 .hero {
   --bottom-padding: 29px;
+  $bp-md: 900px;
+
   &__container {
     display: flex;
     gap: 16px;
     padding-bottom: var(--bottom-padding);
+
+    @media (max-width: $bp-md) {
+      flex-direction: column;
+    }
   }
 
   &__col-1 {
@@ -158,26 +164,48 @@ const artworks = ref([
     display: flex;
     align-items: flex-end;
 
+    @media (max-width: $bp-md) {
+      flex: auto;
+      max-width: 100%;
+    }
+
     :deep(.art-details__footer) {
       .art-field {
         display: flex;
         gap: 8px;
-      }
-    }
 
-    :deep(.taste-btn) {
-      padding: 0px 32px;
+        @container (max-width: 390px) {
+          flex: 1;
+        }
+      }
+
+      .art-details__actions {
+        @container (max-width: 390px) {
+          flex: 1;
+          justify-content: space-between;
+        }
+      }
+
+      :deep(.taste-btn) {
+        padding: 0px 32px;
+      }
     }
   }
 
   &__col-2 {
     flex: 1 1 786px;
-
     max-width: 786px;
     max-height: 519px;
     aspect-ratio: 786 / 519;
     min-width: 0;
     position: relative;
+
+    @media (max-width: $bp-md) {
+      flex: auto;
+      aspect-ratio: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
 }
 </style>

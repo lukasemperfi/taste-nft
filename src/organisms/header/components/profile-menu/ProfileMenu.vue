@@ -149,7 +149,7 @@ const dynamicOffset = computed(() => {
     align-items: flex-end;
     cursor: pointer;
     user-select: none;
-    margin-bottom: globalFunctions.fluidValue(10px, 17px, 375px, 1336px);
+    margin-bottom: globalFunctions.fluidValue(10px, 17px, 375px, 1366px);
   }
 
   &__balance {
@@ -167,18 +167,18 @@ const dynamicOffset = computed(() => {
 
   &__address {
     font-weight: 600;
-    font-size: globalFunctions.fluidValue(12px, 14px, 375px, 1336px);
+    font-size: globalFunctions.fluidValue(12px, 14px, 375px, 1366px);
     color: rgba(255, 255, 255, 0.5);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: globalFunctions.fluidValue(6px, 10px, 375px, 1336px);
+    margin-bottom: globalFunctions.fluidValue(6px, 10px, 375px, 1366px);
   }
 
   &__nav {
     display: flex;
     flex-direction: column;
-    gap: globalFunctions.fluidValue(6px, 12px, 375px, 1336px);
+    gap: globalFunctions.fluidValue(6px, 12px, 375px, 1366px);
   }
 
   &__link {
@@ -187,7 +187,7 @@ const dynamicOffset = computed(() => {
     padding: 0;
     text-align: left;
     font-weight: 600;
-    font-size: globalFunctions.fluidValue(12px, 14px, 375px, 1336px);
+    font-size: globalFunctions.fluidValue(12px, 14px, 375px, 1366px);
     line-height: 18px;
     color: #ffffff;
     cursor: pointer;

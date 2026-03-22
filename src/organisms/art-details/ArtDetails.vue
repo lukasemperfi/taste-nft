@@ -36,9 +36,12 @@
   }
 
   &__footer {
+    container-type: inline-size;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
   }
 }
 </style>

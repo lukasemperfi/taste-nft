@@ -46,7 +46,7 @@ const emit = defineEmits(['play'])
     height: 40px;
     background: #ffffff;
     box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.15);
-    border-radius: globalFunctions.fluidValue(12px, 16px, 375px, 1336px);
+    border-radius: globalFunctions.fluidValue(12px, 16px, 375px, 1366px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,17 +56,17 @@ const emit = defineEmits(['play'])
     font-family: 'Raleway', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: globalFunctions.fluidValue(16px, 20px, 375px, 1336px);
+    font-size: globalFunctions.fluidValue(16px, 20px, 375px, 1366px);
     color: #1f2b38;
     transform: translate(2px, -1px);
   }
 
   &__preview {
     position: relative;
-    width: globalFunctions.fluidValue(140px, 160px, 375px, 1336px);
-    height: globalFunctions.fluidValue(80px, 90px, 375px, 1336px);
+    width: globalFunctions.fluidValue(140px, 160px, 375px, 1366px);
+    height: globalFunctions.fluidValue(80px, 90px, 375px, 1366px);
     background: #c4c4c4;
-    border-radius: globalFunctions.fluidValue(12px, 16px, 375px, 1336px);
+    border-radius: globalFunctions.fluidValue(12px, 16px, 375px, 1366px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,8 +85,8 @@ const emit = defineEmits(['play'])
 
   &__play-btn {
     position: absolute;
-    width: globalFunctions.fluidValue(20px, 22px, 375px, 1336px);
-    height: globalFunctions.fluidValue(20px, 22px, 375px, 1336px);
+    width: globalFunctions.fluidValue(20px, 22px, 375px, 1366px);
+    height: globalFunctions.fluidValue(20px, 22px, 375px, 1366px);
     background: rgba(0, 0, 0, 0.62);
     border-radius: 50%;
     border: none;
@@ -117,7 +117,7 @@ const emit = defineEmits(['play'])
     max-width: 145px;
     font-family: 'Raleway', sans-serif;
     font-weight: 500;
-    font-size: globalFunctions.fluidValue(12px, 14px, 375px, 1336px);
+    font-size: globalFunctions.fluidValue(12px, 14px, 375px, 1366px);
     line-height: 1.15;
     text-align: center;
     color: #ffffff;

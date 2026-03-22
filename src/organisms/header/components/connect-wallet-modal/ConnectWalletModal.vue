@@ -61,7 +61,7 @@ const handleConnectWallet = async () => {
   .guide-steps {
     display: flex;
     justify-content: center;
-    gap: globalFunctions.fluidValue(40px, 57px, 600px, 1336px);
+    gap: globalFunctions.fluidValue(40px, 57px, 600px, 1366px);
 
     @media (max-width: $bp-xs) {
       flex-direction: column;

@@ -18,7 +18,7 @@ const { label = '', value = '' } = defineProps<{
 .art-field {
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
-  font-size: 14px;
+  font-size: globalFunctions.fluidValue(12px, 14px, 375px, 1366px);
   line-height: 18px;
 
   &__label {

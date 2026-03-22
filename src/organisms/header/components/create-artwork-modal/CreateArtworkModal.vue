@@ -222,7 +222,7 @@ watch(form, (newVal) => {
 
 <style lang="scss" scoped>
 .modal-content {
-  padding-inline: globalFunctions.fluidValue(16px, 27px, 375px, 1336px);
+  padding-inline: globalFunctions.fluidValue(16px, 27px, 375px, 1366px);
 }
 .create-artwork {
   &__subtitle {

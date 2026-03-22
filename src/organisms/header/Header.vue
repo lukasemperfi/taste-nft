@@ -91,15 +91,15 @@ const onClear = () => {
 
 <style lang="scss" scoped>
 .header {
-  border-radius: 0 0 globalFunctions.fluidValue(16px, 32px, 375px, 1336px)
-    globalFunctions.fluidValue(16px, 32px, 375px, 1336px);
+  border-radius: 0 0 globalFunctions.fluidValue(16px, 32px, 375px, 1366px)
+    globalFunctions.fluidValue(16px, 32px, 375px, 1366px);
   background: #30363d;
   position: sticky;
   top: 0;
   left: 0;
   z-index: 9999;
   width: 100%;
-  height: globalFunctions.fluidValue(48px, 56px, 375px, 1336px);
+  height: globalFunctions.fluidValue(48px, 56px, 375px, 1366px);
   display: flex;
   align-items: center;
 
@@ -114,8 +114,8 @@ const onClear = () => {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 globalFunctions.fluidValue(36px, 47px, 375px, 1336px);
-    height: globalFunctions.fluidValue(36px, 47px, 375px, 1336px);
+    flex: 0 0 globalFunctions.fluidValue(36px, 47px, 375px, 1366px);
+    height: globalFunctions.fluidValue(36px, 47px, 375px, 1366px);
 
     img {
       width: 100%;
@@ -125,13 +125,13 @@ const onClear = () => {
   }
 
   :deep(.search-bar) {
-    margin-left: globalFunctions.fluidValue(12px, 25px, 375px, 1336px);
+    margin-left: globalFunctions.fluidValue(12px, 25px, 375px, 1366px);
   }
 
   &__actions {
     display: flex;
     align-items: center;
-    margin-left: globalFunctions.fluidValue(8px, 17px, 375px, 1336px);
+    margin-left: globalFunctions.fluidValue(8px, 17px, 375px, 1366px);
   }
 
   :deep(.user-identity) {
@@ -147,7 +147,7 @@ const onClear = () => {
   &__user-actions {
     display: flex;
     align-items: center;
-    gap: globalFunctions.fluidValue(10px, 16px, 375px, 1336px);
+    gap: globalFunctions.fluidValue(10px, 16px, 375px, 1366px);
   }
 
   .art-work-button {
@@ -191,7 +191,7 @@ const onClear = () => {
     }
 
     &__label {
-      font-size: globalFunctions.fluidValue(11px, 12px, 375px, 1336px);
+      font-size: globalFunctions.fluidValue(11px, 12px, 375px, 1366px);
       @media (max-width: globalBreakpoints.$breakpoint-sm) {
         display: none;
       }

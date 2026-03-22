@@ -39,11 +39,11 @@ const updatePaginationWidth = (swiper: any) => {
 <template>
   <swiper
     :effect="'creative'"
+    :watchSlidesProgress="true"
+    :loopAdditionalSlides="4"
+    :slidesPerView="'auto'"
     :grabCursor="true"
     :loop="true"
-    :slidesPerView="'auto'"
-    :loopAdditionalSlides="4"
-    :watchSlidesProgress="true"
     :creativeEffect="{
       limitProgress: 3,
       progressMultiplier: 1.18,
@@ -79,6 +79,8 @@ const updatePaginationWidth = (swiper: any) => {
 </template>
 
 <style lang="scss" scoped>
+$bp-md: 900px;
+
 .artwork-swiper {
   width: 100%;
   height: 100%;
@@ -89,6 +91,12 @@ const updatePaginationWidth = (swiper: any) => {
   width: 38vw !important;
   max-width: 519px;
   max-height: 519px;
+
+  @media (max-width: $bp-md) {
+    width: 62vw !important;
+    max-width: 100%;
+    max-height: 100%;
+  }
 }
 
 .artwork-card {
