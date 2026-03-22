@@ -175,7 +175,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
   overflow-y: auto;
   color: #ffffff;
 
-  @include globalMixins.custom-scrollbar;
+  // @include globalMixins.custom-scrollbar;
 }
 
 .modal-fade-enter-active,

@@ -21,3 +21,30 @@ body {
   padding-inline: globalFunctions.fluidValue(12px, 24px, 375px, 1366px);
   width: 100%;
 }
+
+* {
+  --sb-track-color: transparent;
+  --sb-thumb-color: rgba(255, 255, 255, 0.5);
+  --sb-size: 5px;
+}
+
+*::-webkit-scrollbar {
+  width: var(--sb-size);
+  height: var(--sb-size);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 99px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 99px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
