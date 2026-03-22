@@ -9,6 +9,6 @@ import Hero from './sections/hero/Hero.vue'
 </template>
 <style scoped lang="scss">
 :deep(.hero) {
-  margin-top: 40px;
+  margin-top: globalFunctions.fluidValue(16px, 40px, 375px, 1366px);
 }
 </style>

@@ -41,9 +41,19 @@ defineEmits(['external', 'share', 'menu'])
         background: rgba(255, 255, 255, 0.05);
       }
     }
+
+    @media (max-width: 450px) {
+      width: 38px;
+      height: 38px;
+    }
   }
 
   &__icon {
+    @media (max-width: 450px) {
+      width: 14px;
+      height: 14px;
+    }
+
     :deep(path) {
       fill: #ffffff;
     }

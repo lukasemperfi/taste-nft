@@ -11,7 +11,7 @@ defineProps<{ title: string }>()
   margin: 0;
   font-family: 'Raleway', sans-serif;
   font-weight: 700;
-  font-size: globalFunctions.fluidValue(30px, 32px, 375px, 1366px);
+  font-size: globalFunctions.fluidValue(28px, 32px, 375px, 1366px);
   line-height: 38px;
   color: #ffffff;
 }
