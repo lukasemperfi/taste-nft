@@ -1,22 +1,8 @@
 <script setup lang="ts">
-import BaseInput from '@/atoms/form-controls/input/BaseInput.vue'
-import Button from '@/atoms/button/Button.vue'
-import { ref } from 'vue'
-import { Tabs } from '@/molecules/tabs'
-import ArtCard from '@/organisms/art-card/ArtCard.vue'
-import ArtCardMenu from '@/organisms/art-card/ArtCardMenu.vue'
-
-const testPlaceholder = 'Начните писать...'
-
-const testValue = ref('ап')
-const activeTab = ref('wallet')
-
-function handleClick() {
-  console.log('clicked')
-}
+import Hero from './sections/hero/Hero.vue'
 </script>
 
 <template>
-  <h1>Home</h1>
+  <Hero />
 </template>
 <style scoped lang="scss"></style>

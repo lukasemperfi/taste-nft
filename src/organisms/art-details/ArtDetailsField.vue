@@ -24,6 +24,7 @@ const { label = '', value = '' } = defineProps<{
   &__label {
     margin-right: 4px;
     color: rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
   }
 
   &__value {
