@@ -42,11 +42,11 @@ const updatePaginationWidth = (swiper: any) => {
     :grabCursor="true"
     :loop="true"
     :slidesPerView="'auto'"
-    :loopAdditionalSlides="3"
+    :loopAdditionalSlides="4"
     :watchSlidesProgress="true"
     :creativeEffect="{
       limitProgress: 3,
-
+      progressMultiplier: 1.18,
       prev: {
         shadow: false,
         translate: [0, 0, -200],
@@ -54,9 +54,9 @@ const updatePaginationWidth = (swiper: any) => {
         scale: 0.6,
       },
       next: {
-        translate: ['26.5%', 0, -150],
+        translate: ['25%', 0, -100],
         opacity: 1,
-        scale: 1,
+        scale: 0.95,
       },
     }"
     :pagination="{
