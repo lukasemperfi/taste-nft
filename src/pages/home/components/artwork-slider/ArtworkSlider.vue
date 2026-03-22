@@ -80,6 +80,7 @@ const updatePaginationWidth = (swiper: any) => {
 
 <style lang="scss" scoped>
 $bp-md: 900px;
+$bp-sm: 564px;
 
 .artwork-swiper {
   width: 100%;
@@ -96,6 +97,10 @@ $bp-md: 900px;
     width: 62vw !important;
     max-width: 100%;
     max-height: 100%;
+  }
+
+  @media (max-width: $bp-sm) {
+    width: 100% !important;
   }
 }
 

@@ -88,6 +88,10 @@ const selected = defineModel<Option | null>({ default: null })
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    @media (max-width: globalBreakpoints.$breakpoint-xs) {
+      font-size: 12px;
+    }
   }
 
   &__icon {

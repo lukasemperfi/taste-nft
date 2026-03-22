@@ -53,7 +53,7 @@ const { balance = '1,5M', tokenIcon = 'logo-2', size = 'md' } = defineProps<Prop
       height: 25px;
     }
     .token-balance__balance-text {
-      font-size: 16px;
+      font-size: globalFunctions.fluidValue(14px, 16px, 375px, 1366px);
     }
   }
 
@@ -67,7 +67,7 @@ const { balance = '1,5M', tokenIcon = 'logo-2', size = 'md' } = defineProps<Prop
       height: 15px;
     }
     .token-balance__balance-text {
-      font-size: 16px;
+      font-size: globalFunctions.fluidValue(14px, 16px, 375px, 1366px);
     }
   }
 

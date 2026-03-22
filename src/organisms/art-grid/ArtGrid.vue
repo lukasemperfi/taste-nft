@@ -25,8 +25,13 @@ defineProps<Props>()
     grid-template-columns: repeat(auto-fill, minmax(311px, 1fr));
   }
 
+  // @media (max-width: 768px) {
+  //   grid-template-columns: repeat(auto-fill, minmax(311px, 475px));
+  //   justify-content: center;
+  // }
+
   @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(311px, 475px));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     justify-content: center;
   }
 }

@@ -6,8 +6,8 @@ const props = withDefaults(defineProps<Artwork>(), {
   image: '',
   title: 'WFH - art name',
   endingIn: '05h 02m 41s',
-  tokenIcon: 'logo-2',
   balance: '1,5M',
+  tokenIcon: 'logo-2',
 })
 </script>
 
@@ -63,15 +63,23 @@ const props = withDefaults(defineProps<Artwork>(), {
   &__badge {
     position: absolute;
     left: 16px;
-    top: 16px;
-    width: 131px;
-    height: 44px;
+    top: 12px;
     background: #ffffff;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 16px;
+    color: #000000;
+    padding-inline: 12px;
+    padding-block: 7px;
+
+    @media (max-width: globalBreakpoints.$breakpoint-xs) {
+      font-size: 14px;
+    }
   }
 
   &__menu {
@@ -101,6 +109,10 @@ const props = withDefaults(defineProps<Artwork>(), {
     font-size: 20px;
     line-height: 23px;
     color: #ffffff;
+
+    @media (max-width: globalBreakpoints.$breakpoint-xs) {
+      font-size: 18px;
+    }
   }
 
   &__stats {
@@ -117,6 +129,10 @@ const props = withDefaults(defineProps<Artwork>(), {
     font-size: 14px;
     line-height: 16px;
     color: rgba(255, 255, 255, 0.5);
+
+    @media (max-width: globalBreakpoints.$breakpoint-xs) {
+      font-size: 12px;
+    }
   }
 
   &__value {
@@ -126,6 +142,10 @@ const props = withDefaults(defineProps<Artwork>(), {
     line-height: 19px;
     color: #ffffff;
     text-align: right;
+
+    @media (max-width: globalBreakpoints.$breakpoint-xs) {
+      font-size: 14px;
+    }
 
     &__price {
       display: flex;
