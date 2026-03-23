@@ -6,6 +6,7 @@ import ArtGrid from '@/organisms/art-grid/ArtGrid.vue'
 import ArtCard from '@/organisms/art-card/ArtCard.vue'
 import UserIdentity from '@/molecules/user-identity/UserIdentity.vue'
 import { artworks } from '@/helpers/artworks'
+import Button from '@/atoms/button/Button.vue'
 
 const sortOptions = [
   { label: 'Recently added', value: 'recent' },
@@ -70,6 +71,9 @@ const filteredArtworks = computed(() => {
             </ArtCard>
           </template>
         </ArtGrid>
+        <div v-if="searchQuery" class="catalog__show-all">
+          <Button class="catalog__show-all-button" size="md" variant="secondary">Show all</Button>
+        </div>
       </div>
     </div>
   </div>
@@ -95,6 +99,17 @@ const filteredArtworks = computed(() => {
     .user-identity__name {
       color: #1d2228;
     }
+  }
+
+  &__show-all {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+  }
+
+  &__show-all-button {
+    padding: 0 32px;
   }
 }
 </style>

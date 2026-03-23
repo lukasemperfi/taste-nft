@@ -30,6 +30,14 @@ const searchQuery = inject<Ref<string>>('searchContext', ref(''))
   :deep(.catalog) {
     margin-top: 32px;
   }
+
+  :deep(.creators) {
+    margin-top: 47px;
+
+    .creators__title {
+      display: none;
+    }
+  }
 }
 
 :deep(.creators) {
