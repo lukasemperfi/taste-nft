@@ -36,16 +36,14 @@ defineProps<{
           </div>
         </div>
 
-        <div class="activity-item__right">
-          <div class="activity-item__price">
-            <TokenBalance size="sm" />
-            <span class="activity-item__amount">({{ item.amountUsd }}$)</span>
-          </div>
-
-          <a :href="item.externalLink" target="_blank" class="activity-item__link-btn">
-            <VIcon name="external-link" class="activity-item__icon" />
-          </a>
+        <div class="activity-item__price">
+          <TokenBalance size="sm" />
+          <span class="activity-item__amount">({{ item.amountUsd }}$)</span>
         </div>
+
+        <a :href="item.externalLink" target="_blank" class="activity-item__link-btn">
+          <VIcon name="external-link" class="activity-item__icon" />
+        </a>
       </div>
     </div>
   </div>
@@ -140,11 +138,23 @@ defineProps<{
     white-space: nowrap;
   }
 
+  &__left {
+    @media (max-width: 492px) {
+      order: 1;
+    }
+  }
+
   &__price {
     display: flex;
     align-items: center;
-    margin-right: 10px;
+
     gap: 4px;
+    margin-left: auto;
+
+    @media (max-width: 492px) {
+      order: 3;
+      margin-left: 0;
+    }
   }
 
   &__token-icon {
@@ -174,11 +184,14 @@ defineProps<{
     text-decoration: none;
     transition: transform 0.2s ease;
 
+    @media (max-width: 492px) {
+      order: 2;
+    }
+
     @media (max-width: globalBreakpoints.$breakpoint-xs) {
       width: 30px;
       height: 30px;
       border-radius: 8px;
-      order: 2;
     }
   }
 }
