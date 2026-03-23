@@ -9,6 +9,7 @@ import VIcon from '@/atoms/icon/VIcon.vue'
 import ConnectWalletModal from './components/connect-wallet-modal/ConnectWalletModal.vue'
 import CreateArtworkModal from './components/create-artwork-modal/CreateArtworkModal.vue'
 import { useAuth } from '@/helpers/useAuth'
+import { inject } from 'vue'
 
 const currentUser = ref({
   name: 'User Name',
@@ -20,8 +21,8 @@ const currentUser = ref({
 
 const isOpenConnectWalletModal = ref(false)
 const isOpenCreateArtworkModal = ref(false)
-
 const { isAuth, login, logout } = useAuth()
+const searchQuery = inject<string>('searchContext', '')
 
 const openConnectWalletModal = () => {
   isOpenConnectWalletModal.value = true
@@ -38,8 +39,6 @@ const handleLogout = () => {
 const handleOpenProfile = () => {
   console.log('Redirecting to profile...')
 }
-
-const searchQuery = ref('')
 
 const onSearch = (value: string) => {
   console.log('Searching for:', value)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, inject, type Ref } from 'vue'
 import Dropdown from '@/molecules/dropdown/Dropdown.vue'
 import VIcon from '@/atoms/icon/VIcon.vue'
 import ArtGrid from '@/organisms/art-grid/ArtGrid.vue'
@@ -22,6 +22,21 @@ const listingOptions = [
 
 const sortDefault = ref(sortOptions[0])
 const listingDefault = ref(listingOptions[1])
+const searchQuery = inject<Ref<string>>('searchContext')
+
+const filteredArtworks = computed(() => {
+  const query = searchQuery?.value.toLowerCase().trim()
+
+  if (!query) return artworks
+
+  return artworks.filter((item) => {
+    return (
+      item.title.toLowerCase().includes(query) ||
+      item?.author?.nickname.toLowerCase().includes(query) ||
+      item?.author?.name.toLowerCase().includes(query)
+    )
+  })
+})
 </script>
 <template>
   <div class="catalog">
@@ -35,7 +50,7 @@ const listingDefault = ref(listingOptions[1])
         />
       </div>
       <div class="catalog__artworks-list">
-        <ArtGrid :items="artworks.slice(0, 8)">
+        <ArtGrid :items="searchQuery ? filteredArtworks.slice(0, 4) : filteredArtworks.slice(0, 8)">
           <template #item="{ item }">
             <ArtCard
               :title="item.title"
