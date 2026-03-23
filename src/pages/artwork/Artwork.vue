@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
+import Bid from './sections/bid/Bid.vue'
 
 const route = useRoute()
 const artworkId = computed(() => route.params.id || '1')
@@ -20,6 +21,8 @@ console.log('artworkId', artworkId.value)
         </div>
       </div>
     </div>
+    <Bid />
+    <div style="padding: 500px"></div>
   </div>
 </template>
 <style scoped lang="scss">
@@ -44,6 +47,10 @@ console.log('artworkId', artworkId.value)
       height: 100%;
       object-fit: cover;
     }
+  }
+
+  :deep(.bid) {
+    margin-top: 64px;
   }
 }
 </style>
