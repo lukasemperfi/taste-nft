@@ -5,6 +5,7 @@ export interface Author {
 }
 
 export interface Artwork {
+  id: string
   image: string
   title: string
   endingIn: string
@@ -15,6 +16,7 @@ export interface Artwork {
 
 export const artworks: Artwork[] = [
   {
+    id: '1',
     image: 'https://loremflickr.com/600/400/abstract?lock=1',
     title: 'Ethereal Echoes',
     endingIn: '02h 15m 10s',
@@ -27,6 +29,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '2',
     image: 'https://loremflickr.com/600/400/abstract?lock=2',
     title: 'Neon Dreams',
     endingIn: '12h 40m 00s',
@@ -39,6 +42,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '3',
     image: 'https://loremflickr.com/600/400/abstract?lock=3',
     title: 'Cybernetic Bloom',
     endingIn: '05m 30s 40s',
@@ -51,6 +55,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '4',
     image: 'https://loremflickr.com/600/400/abstract?lock=4',
     title: 'Digital Dust',
     endingIn: '1d 04h 32s',
@@ -63,6 +68,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '5',
     image: 'https://loremflickr.com/600/400/abstract?lock=5',
     title: 'Abstract Pulse',
     endingIn: '08h 20m 30s',
@@ -75,6 +81,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '6',
     image: 'https://loremflickr.com/600/400/abstract?lock=6',
     title: 'Golden Hour',
     endingIn: '45m 12s 30s',
@@ -87,6 +94,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '7',
     image: 'https://loremflickr.com/600/400/abstract?lock=7',
     title: 'Vortex Vision',
     endingIn: '03h 10m 41s',
@@ -99,6 +107,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '8',
     image: 'https://loremflickr.com/600/400/abstract?lock=8',
     title: 'Liquid Metal',
     endingIn: '15h 55m 41s',
@@ -111,6 +120,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '9',
     image: 'https://loremflickr.com/600/400/abstract?lock=9',
     title: 'Silent Symphony',
     endingIn: '2d 10h 41s',
@@ -123,6 +133,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '10',
     image: 'https://loremflickr.com/600/400/abstract?lock=10',
     title: 'Quantum Glitch',
     endingIn: '10m 05s 22s',
@@ -135,6 +146,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '11',
     image: 'https://loremflickr.com/600/400/abstract?lock=11',
     title: 'Solar Flare',
     endingIn: '06h 30m 41s',
@@ -147,6 +159,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '12',
     image: 'https://loremflickr.com/600/400/abstract?lock=12',
     title: 'Midnight Mirage',
     endingIn: '18h 20m 00s',
@@ -159,6 +172,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '13',
     image: 'https://loremflickr.com/600/400/abstract?lock=13',
     title: 'Prism Peak',
     endingIn: '01h 45m 00s',
@@ -171,6 +185,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '14',
     image: 'https://loremflickr.com/600/400/abstract?lock=14',
     title: 'Oasis One',
     endingIn: '3d 12h 00s',
@@ -183,6 +198,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '15',
     image: 'https://loremflickr.com/600/400/abstract?lock=15',
     title: 'Binary Sunset',
     endingIn: '14h 00m 00s',
@@ -195,6 +211,7 @@ export const artworks: Artwork[] = [
     },
   },
   {
+    id: '16',
     image: 'https://loremflickr.com/600/400/abstract?lock=16',
     title: 'Velocity',
     endingIn: '22m 30s 00s',

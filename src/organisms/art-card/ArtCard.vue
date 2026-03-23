@@ -14,7 +14,9 @@ const props = withDefaults(defineProps<Artwork>(), {
 <template>
   <article class="art-card">
     <div class="art-card__image-container">
-      <img :src="props.image" class="art-card__image" alt="Artwork" />
+      <RouterLink :to="`/artwork/${props.id}`" class="art-card__image-link">
+        <img :src="props.image" class="art-card__image" alt="Artwork" />
+      </RouterLink>
 
       <div class="art-card__badge">
         <slot name="badge" />
@@ -58,6 +60,12 @@ const props = withDefaults(defineProps<Artwork>(), {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  &__image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 
   &__badge {

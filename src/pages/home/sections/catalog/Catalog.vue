@@ -54,6 +54,7 @@ const filteredArtworks = computed(() => {
         <ArtGrid :items="searchQuery ? filteredArtworks.slice(0, 4) : filteredArtworks.slice(0, 8)">
           <template #item="{ item }">
             <ArtCard
+              :id="item.id"
               :title="item.title"
               :endingIn="item.endingIn"
               :image="item.image"
