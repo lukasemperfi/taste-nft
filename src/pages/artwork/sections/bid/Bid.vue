@@ -6,6 +6,8 @@ import ArtDetailsField from '@/organisms/art-details/ArtDetailsField.vue'
 import ArtDetailsActions from '@/organisms/art-details/ArtDetailsActions.vue'
 import UserIdentity from '@/molecules/user-identity/UserIdentity.vue'
 import ActivityList from '@/pages/artwork/components/ActivityList.vue'
+import AuctionCard from '@/pages/artwork/components/AuctionCard.vue'
+import PlaceBidModal from '@/pages/artwork/components/PlaceBidModal.vue'
 
 const artData = ref({
   title: 'WFH - art name',
@@ -26,10 +28,31 @@ const activitiesData = Array.from({ length: 12 }, (_, i) => ({
   amountUsd: '1308.54',
   externalLink: '#',
 }))
+
+const isBid = ref(false)
+const isBidModalOpen = ref(false)
+
+const handleBid = () => {
+  console.log('Bid!')
+  isBidModalOpen.value = true
+}
+const handleBuy = () => {
+  console.log('Buy!')
+}
 </script>
 <template>
   <div class="bid">
     <div class="bid__container app-container">
+      <div class="bid__top">
+        <AuctionCard v-if="!isBid" button-text="Place a bid" @click="handleBid" />
+        <AuctionCard
+          v-else
+          label="Price:"
+          button-text="Buy art"
+          class="auction-card_buy"
+          @click="handleBuy"
+        />
+      </div>
       <div class="bid__col-1">
         <ArtDetails>
           <template #header>
@@ -65,6 +88,7 @@ const activitiesData = Array.from({ length: 12 }, (_, i) => ({
       </div>
     </div>
   </div>
+  <PlaceBidModal v-model="isBidModalOpen" />
 </template>
 <style scoped lang="scss">
 .bid {
@@ -73,9 +97,21 @@ const activitiesData = Array.from({ length: 12 }, (_, i) => ({
   &__container {
     display: flex;
     gap: 22px;
+    position: relative;
 
     @media (max-width: $bp-md) {
       flex-direction: column;
+    }
+  }
+
+  &__top {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -106px);
+
+    @media (max-width: 560px) {
+      transform: translate(-50%, -151px);
     }
   }
 
@@ -94,6 +130,19 @@ const activitiesData = Array.from({ length: 12 }, (_, i) => ({
     @media (max-width: $bp-md) {
       padding-top: 0;
       flex: 1;
+    }
+  }
+
+  :deep(.auction-card_buy) {
+    display: flex;
+    width: max-content;
+
+    .auction-card__section_token-balance {
+      border-right: 3px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .auction-card__section_timer {
+      display: none;
     }
   }
 }
