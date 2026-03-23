@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TokenBalance from '@/atoms/token-balance/TokenBalance.vue'
-import { Artwork } from '@/helpers/artworks'
+import { type Artwork } from '@/helpers/artworks'
 
 const props = withDefaults(defineProps<Artwork>(), {
   image: '',

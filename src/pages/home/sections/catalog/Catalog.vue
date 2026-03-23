@@ -39,7 +39,6 @@ const listingDefault = ref(listingOptions[1])
           <template #item="{ item }">
             <ArtCard
               :title="item.title"
-              :soldFor="item.soldFor"
               :endingIn="item.endingIn"
               :image="item.image"
               :balance="item.balance"
@@ -47,9 +46,9 @@ const listingDefault = ref(listingOptions[1])
             >
               <template #badge>
                 <UserIdentity
-                  :name="item.author.name"
-                  :username="item.author.nickname"
-                  :avatar-url="item.author.avatar"
+                  :name="item?.author?.name || ''"
+                  :username="item?.author?.nickname || ''"
+                  :avatar-url="item?.author?.avatar || ''"
                   size="sm"
                 />
               </template>
