@@ -53,7 +53,6 @@ defineProps<{
 
 <style lang="scss" scoped>
 .activity {
-  max-width: 778px;
   color: #ffffff;
   font-family: 'Raleway', sans-serif;
 
@@ -85,6 +84,8 @@ defineProps<{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
   transition: background 0.2s ease;
 
   &:hover {
@@ -104,6 +105,12 @@ defineProps<{
     overflow: hidden;
     box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.15);
     margin-right: 10px;
+
+    @media (max-width: globalBreakpoints.$breakpoint-xs) {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+    }
   }
 
   &__avatar {
@@ -119,16 +126,18 @@ defineProps<{
 
   &__action {
     font-weight: 700;
-    font-size: 20px;
+    font-size: clamp(16px, 1.5vw, 20px);
     line-height: 23px;
     margin: 0;
+    white-space: nowrap;
   }
 
   &__date {
     font-weight: 500;
-    font-size: 14px;
+    font-size: clamp(12px, 1.1vw, 14px);
     line-height: 16px;
     color: rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
   }
 
   &__price {
@@ -147,7 +156,7 @@ defineProps<{
 
   &__amount {
     font-weight: 600;
-    font-size: 16px;
+    font-size: clamp(14px, 1.2vw, 16px);
     line-height: 19px;
     color: rgba(255, 255, 255, 0.5);
   }
@@ -164,6 +173,13 @@ defineProps<{
     cursor: pointer;
     text-decoration: none;
     transition: transform 0.2s ease;
+
+    @media (max-width: globalBreakpoints.$breakpoint-xs) {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      order: 2;
+    }
   }
 }
 </style>

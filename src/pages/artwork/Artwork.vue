@@ -22,7 +22,6 @@ console.log('artworkId', artworkId.value)
       </div>
     </div>
     <Bid />
-    <div style="padding: 500px"></div>
   </div>
 </template>
 <style scoped lang="scss">

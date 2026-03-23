@@ -68,18 +68,33 @@ const activitiesData = Array.from({ length: 12 }, (_, i) => ({
 </template>
 <style scoped lang="scss">
 .bid {
+  $bp-md: 1066px;
+
   &__container {
     display: flex;
-    gap: 23px;
+    gap: 22px;
+
+    @media (max-width: $bp-md) {
+      flex-direction: column;
+    }
   }
 
   &__col-1 {
-    flex: 1 1 516px;
+    flex: 1 1 517px;
+
+    @media (max-width: $bp-md) {
+      flex: 1;
+    }
   }
 
   &__col-2 {
-    flex: 1 1 778px;
+    flex: 1 1 779px;
     padding-top: 6px;
+
+    @media (max-width: $bp-md) {
+      padding-top: 0;
+      flex: 1;
+    }
   }
 }
 </style>
