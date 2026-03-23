@@ -14,10 +14,14 @@ import { mockCreators } from '@/helpers/creators'
 </template>
 <style scoped lang="scss">
 :deep(.hero) {
-  margin-top: globalFunctions.fluidValue(40px, 40px, 375px, 1366px);
+  margin-top: 40px;
 }
 
 :deep(.catalog) {
+  margin-top: globalFunctions.fluidValue(40px, 80px, 375px, 1366px);
+}
+
+:deep(.creators) {
   margin-top: globalFunctions.fluidValue(40px, 80px, 375px, 1366px);
 }
 </style>

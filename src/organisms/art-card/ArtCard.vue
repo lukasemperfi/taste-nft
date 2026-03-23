@@ -103,7 +103,7 @@ const props = withDefaults(defineProps<Artwork>(), {
   }
 
   &__title {
-    margin: 0 0 16px 0;
+    margin: 0 0 15px 0;
     font-family: 'Raleway', sans-serif;
     font-weight: 700;
     font-size: 20px;
