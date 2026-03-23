@@ -3,13 +3,13 @@ import logo from '@/assets/icons/logo-1.svg?url'
 import { ref } from 'vue'
 import SearchBar from './components/searchbar/Searchbar.vue'
 import Button from '@/atoms/button/Button.vue'
-import UserIdentity from '@/molecules/user-identity/UserIdentity.vue'
 import ProfileMenu from './components/profile-menu/ProfileMenu.vue'
 import VIcon from '@/atoms/icon/VIcon.vue'
 import ConnectWalletModal from './components/connect-wallet-modal/ConnectWalletModal.vue'
 import CreateArtworkModal from './components/create-artwork-modal/CreateArtworkModal.vue'
 import { useAuth } from '@/helpers/useAuth'
 import { inject } from 'vue'
+import { useScrollLock } from '@vueuse/core'
 
 const currentUser = ref({
   name: 'User Name',

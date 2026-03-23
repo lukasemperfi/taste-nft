@@ -86,8 +86,10 @@ defineProps<{
   gap: 10px;
   transition: background 0.2s ease;
 
-  &:hover {
-    background: rgba(51, 57, 64, 0.3);
+  @media (hover: hover) {
+    &:hover {
+      background: rgba(51, 57, 64, 0.3);
+    }
   }
 
   &__left,
@@ -124,7 +126,7 @@ defineProps<{
 
   &__action {
     font-weight: 700;
-    font-size: clamp(16px, 1.5vw, 20px);
+    font-size: clamp(14px, 1.5vw, 20px);
     line-height: 23px;
     margin: 0;
     white-space: nowrap;
@@ -166,7 +168,7 @@ defineProps<{
 
   &__amount {
     font-weight: 600;
-    font-size: clamp(14px, 1.2vw, 16px);
+    font-size: clamp(12px, 1.2vw, 16px);
     line-height: 19px;
     color: rgba(255, 255, 255, 0.5);
   }
