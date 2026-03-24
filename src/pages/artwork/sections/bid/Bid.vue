@@ -39,11 +39,16 @@ const handleBid = () => {
 const handleBuy = () => {
   console.log('Buy!')
 }
+
+const onBidSuccess = (value: string) => {
+  console.log('Bid success', value)
+  isBid.value = true
+}
 </script>
 <template>
   <div class="bid">
     <div class="bid__container app-container">
-      <div class="bid__top">
+      <div class="bid__top" :class="isBid ? 'bid__top_buy' : 'bid__top_place'">
         <AuctionCard v-if="!isBid" button-text="Place a bid" @click="handleBid" />
         <AuctionCard
           v-else
@@ -88,7 +93,7 @@ const handleBuy = () => {
       </div>
     </div>
   </div>
-  <PlaceBidModal v-model="isBidModalOpen" />
+  <PlaceBidModal v-model="isBidModalOpen" @success="onBidSuccess" />
 </template>
 <style scoped lang="scss">
 .bid {
@@ -110,8 +115,10 @@ const handleBuy = () => {
     left: 50%;
     transform: translate(-50%, -106px);
 
-    @media (max-width: 560px) {
-      transform: translate(-50%, -151px);
+    &_place {
+      @media (max-width: 560px) {
+        transform: translate(-50%, -151px);
+      }
     }
   }
 
