@@ -92,8 +92,8 @@ const onBidSuccess = (value: string) => {
         <ActivityList :activities="activitiesData" />
       </div>
     </div>
+    <PlaceBidModal v-model="isBidModalOpen" @success="onBidSuccess" />
   </div>
-  <PlaceBidModal v-model="isBidModalOpen" @success="onBidSuccess" />
 </template>
 <style scoped lang="scss">
 .bid {

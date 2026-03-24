@@ -40,7 +40,7 @@ defineEmits(['click'])
   $bp-md: 560px;
 
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, max-content);
   align-items: center;
   justify-content: space-between;
   width: 100%;

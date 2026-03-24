@@ -2,6 +2,7 @@
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
 import Bid from './sections/bid/Bid.vue'
+import FeatureWorks from './sections/feature-works/FeatureWorks.vue'
 
 const route = useRoute()
 const artworkId = computed(() => route.params.id || '1')
@@ -22,6 +23,7 @@ console.log('artworkId', artworkId.value)
       </div>
     </div>
     <Bid />
+    <FeatureWorks />
   </div>
 </template>
 <style scoped lang="scss">
@@ -50,6 +52,11 @@ console.log('artworkId', artworkId.value)
 
   :deep(.bid) {
     margin-top: 64px;
+  }
+
+  :deep(.feature-works) {
+    margin-top: clamp(40px, 7.1vw, 97px);
+    margin-bottom: clamp(40px, 5.5vw, 75px);
   }
 }
 </style>

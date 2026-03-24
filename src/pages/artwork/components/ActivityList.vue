@@ -50,6 +50,7 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
+$bp-sm: 471px;
 .activity {
   color: #ffffff;
   font-family: 'Raleway', sans-serif;
@@ -83,8 +84,12 @@ defineProps<{
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
   transition: background 0.2s ease;
+
+  @media (max-width: $bp-sm) {
+    // flex-wrap: wrap;
+  }
 
   @media (hover: hover) {
     &:hover {
@@ -141,7 +146,7 @@ defineProps<{
   }
 
   &__left {
-    @media (max-width: 492px) {
+    @media (max-width: $bp-sm) {
       order: 1;
     }
   }
@@ -153,7 +158,7 @@ defineProps<{
     gap: 4px;
     margin-left: auto;
 
-    @media (max-width: 492px) {
+    @media (max-width: $bp-sm) {
       order: 3;
       margin-left: 0;
     }
@@ -186,7 +191,7 @@ defineProps<{
     text-decoration: none;
     transition: transform 0.2s ease;
 
-    @media (max-width: 492px) {
+    @media (max-width: $bp-sm) {
       order: 2;
     }
 
