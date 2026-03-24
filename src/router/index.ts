@@ -1,9 +1,4 @@
-import {
-  createRouter,
-  createWebHistory,
-  createWebHashHistory,
-  type RouteRecordRaw,
-} from 'vue-router'
+import { createRouter, createWebHashHistory, type RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -15,6 +10,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/artwork/:id',
     name: 'artwork',
     component: () => import('@/pages/artwork/Artwork.vue'),
+  },
+
+  {
+    path: '/creator-profile/:id',
+    name: 'creator-profile',
+    component: () => import('@/pages/creator-profile/CreatorProfile.vue'),
   },
   {
     path: '/profile/:username',

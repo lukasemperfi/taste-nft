@@ -37,9 +37,12 @@ const props = withDefaults(defineProps<Props>(), {
   grid-auto-columns: max-content;
   gap: 24px;
   align-items: center;
-
   height: 20px;
   background: transparent;
+
+  @media (max-width: globalBreakpoints.$breakpoint-xs) {
+    grid-auto-columns: auto;
+  }
 
   &__item {
     display: grid;
@@ -55,8 +58,8 @@ const props = withDefaults(defineProps<Props>(), {
   }
 
   &__icon {
-    width: 20px;
-    height: 20px;
+    width: clamp(18px, 1.5vw, 20px);
+    height: clamp(18px, 1.5vw, 20px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,7 +73,7 @@ const props = withDefaults(defineProps<Props>(), {
     font-family: 'Raleway', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    font-size: clamp(12px, 1.1vw, 14px);
     line-height: 18px;
     color: #ffffff;
   }

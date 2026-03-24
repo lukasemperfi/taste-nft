@@ -26,7 +26,7 @@ const { followers = 234, following = 15 } = defineProps<Props>()
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: max-content;
-  gap: 16px;
+  gap: 17px;
   height: 38px;
 
   &__item {
@@ -38,7 +38,7 @@ const { followers = 234, following = 15 } = defineProps<Props>()
   &__count {
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
-    font-size: 14px;
+    font-size: clamp(12px, 1.1vw, 14px);
     line-height: 18px;
     color: #ffffff;
   }
@@ -46,7 +46,7 @@ const { followers = 234, following = 15 } = defineProps<Props>()
   &__label {
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: clamp(12px, 1.1vw, 14px);
     line-height: 18px;
     color: rgba(255, 255, 255, 0.5);
   }
