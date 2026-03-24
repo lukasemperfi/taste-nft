@@ -19,7 +19,7 @@
   border: 1px solid transparent;
 
   background:
-    linear-gradient(#1d2228, #1d2228) padding-box,
+    linear-gradient(#30363d, #30363d) padding-box,
     linear-gradient(270deg, #8743ff 0%, #d8c2ff 100%) border-box;
 
   .taste-btn__label {
@@ -37,7 +37,7 @@
     font-size: 12px;
   } @else if $size == 'md' {
     height: 40px;
-    padding: 0 27px;
+    padding: 0 32px;
     font-size: 14px;
   }
 }

@@ -3,6 +3,9 @@ import { onMounted, onUnmounted, provide } from 'vue'
 import VIcon from '@/atoms/icon/VIcon.vue'
 
 const isOpen = defineModel<boolean>({ default: false })
+defineOptions({
+  inheritAttrs: false,
+})
 
 provide('modalContext', { isOpen })
 
@@ -22,7 +25,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
   <Teleport to="body">
     <Transition name="modal-fade">
       <div v-if="isOpen" class="modal-overlay" @click.self="close">
-        <div class="modal-container">
+        <div class="modal-container" v-bind="$attrs">
           <header class="modal-header">
             <div v-if="$slots['header-left']" class="modal-header__left">
               <slot name="header-left" />
@@ -59,7 +62,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
   height: 100%;
   background: rgba(35, 31, 32, 0.7);
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   z-index: 9999;
   backdrop-filter: blur(4px);
@@ -119,18 +122,15 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
     }
   }
 
-  &__left,
   &__right {
     flex: 0 0 40px;
     display: flex;
     align-items: center;
-  }
-
-  &__right {
     justify-content: flex-end;
     position: absolute;
     right: 24px;
     left: 24px;
+    justify-self: flex-end;
   }
 }
 
@@ -162,7 +162,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
 
 .modal-content {
   flex: 1;
-  overflow-y: auto;
+  overflow-y: scroll;
   color: #ffffff;
 
   // @include globalMixins.custom-scrollbar;

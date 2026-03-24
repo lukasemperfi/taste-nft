@@ -7,6 +7,7 @@ import Button from '@/atoms/button/Button.vue'
 import ArtDetailsSocials from '@/organisms/art-details/ArtDetailsSocials.vue'
 import ArtDetailsUserStats from '@/organisms/art-details/ArtDetailsUserStats.vue'
 import { ref } from 'vue'
+import FollowModal from '../components/FollowModal.vue'
 
 const artData = ref({
   title: 'WFH - art name',
@@ -18,6 +19,12 @@ const artData = ref({
   username: 'username',
   avatarUrl: 'https://i.pravatar.cc/150?u=1',
 })
+
+const isFollowModalOpen = ref(false)
+
+const openFollowModal = () => {
+  isFollowModalOpen.value = true
+}
 </script>
 <template>
   <div class="creator-info app-container">
@@ -31,7 +38,7 @@ const artData = ref({
             size="lg"
           />
           <ArtDetailsUserStats />
-          <Button> Follow </Button>
+          <Button @click="openFollowModal">Follow</Button>
           <ArtDetailsActions
             @share="() => console.log('Shared!')"
             @external="() => console.log('Link opened!')"
@@ -48,6 +55,7 @@ const artData = ref({
         </span>
       </ArtDetailsField>
     </ArtDetails>
+    <FollowModal v-model="isFollowModalOpen" />
   </div>
 </template>
 <style scoped lang="scss">
