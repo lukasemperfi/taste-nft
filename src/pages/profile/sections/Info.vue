@@ -5,6 +5,7 @@ import ArtDetailsActions from '@/organisms/art-details/ArtDetailsActions.vue'
 import UserIdentity from '@/molecules/user-identity/UserIdentity.vue'
 import ArtDetailsSocials from '@/organisms/art-details/ArtDetailsSocials.vue'
 import ArtDetailsUserStats from '@/organisms/art-details/ArtDetailsUserStats.vue'
+import EditProfileModal from '@/pages/profile/components/edit-profile-modal/EditProfileModal.vue'
 import { ref } from 'vue'
 
 const artData = ref({
@@ -17,6 +18,12 @@ const artData = ref({
   username: 'username',
   avatarUrl: 'https://i.pravatar.cc/150?u=1',
 })
+const showEditProfileModal = ref(false)
+
+const onEditProfile = () => {
+  console.log('clicked edit profile')
+  showEditProfileModal.value = true
+}
 </script>
 <template>
   <div class="info app-container">
@@ -35,7 +42,7 @@ const artData = ref({
             @share="() => console.log('Shared!')"
             @external="() => console.log('Link opened!')"
             @menu="() => console.log('Menu opened!')"
-            @edit-profile="() => console.log('Edit profile!')"
+            @edit-profile="onEditProfile"
             :show-menu="true"
           />
         </div>
@@ -49,6 +56,7 @@ const artData = ref({
         </span>
       </ArtDetailsField>
     </ArtDetails>
+    <EditProfileModal v-model="showEditProfileModal" />
   </div>
 </template>
 <style scoped lang="scss">
