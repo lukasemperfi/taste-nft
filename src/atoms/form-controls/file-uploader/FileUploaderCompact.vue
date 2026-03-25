@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { FileUploaderProps, FileUploaderEvents } from './types'
+import VIcon from '@/atoms/icon/VIcon.vue'
 
 defineProps<FileUploaderProps>()
 defineEmits<FileUploaderEvents>()
@@ -24,7 +25,7 @@ defineEmits<FileUploaderEvents>()
           class="file-uploader__action-button file-uploader__action-button_type_delete"
           @click="$emit('remove')"
         >
-          delete file
+          <VIcon name="cross" /> delete file
         </button>
       </div>
     </div>
@@ -72,6 +73,7 @@ defineEmits<FileUploaderEvents>()
     margin-left: 16px;
     display: flex;
     flex-direction: column;
+    gap: 4px;
     overflow: hidden;
   }
 
@@ -98,13 +100,22 @@ defineEmits<FileUploaderEvents>()
     font-family: inherit;
     font-size: 16px;
     transition: opacity 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 
     &_type_delete {
       color: #ff5e54;
     }
 
-    &:hover {
-      opacity: 0.7;
+    @media (hover: hover) {
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    :deep(path) {
+      fill: #ff5e54;
     }
   }
 

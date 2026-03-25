@@ -63,28 +63,28 @@ const handleSave = async () => {
             <template #label>Contacts</template>
             <div class="contacts">
               <div class="contacts__item">
-                <div class="contacts__icon">
+                <div class="contacts__social">
                   <VIcon name="twitch" class="contacts__icon" />
                   <span class="contacts__name">Twitch</span>
                 </div>
                 <BaseInput type="text" class="edit-profile-form__input" />
               </div>
               <div class="contacts__item">
-                <div class="contacts__icon">
+                <div class="contacts__social">
                   <VIcon name="instagram" class="contacts__icon" />
                   <span class="contacts__name">Instagram</span>
                 </div>
                 <BaseInput type="text" class="edit-profile-form__input" />
               </div>
               <div class="contacts__item">
-                <div class="contacts__icon">
+                <div class="contacts__social">
                   <VIcon name="twitter" class="contacts__icon" />
                   <span class="contacts__name">Twitter</span>
                 </div>
                 <BaseInput type="text" class="edit-profile-form__input" />
               </div>
               <div class="contacts__item">
-                <div class="contacts__icon">
+                <div class="contacts__social">
                   <VIcon name="onlyfans" class="contacts__icon" />
                   <span class="contacts__name">Onlyfans</span>
                 </div>
@@ -106,8 +106,12 @@ const handleSave = async () => {
 
 <style lang="scss" scoped>
 .edit-profile {
-  padding-top: 28px;
+  padding-top: 34px;
   padding-inline: 24px;
+
+  @media (max-width: globalBreakpoints.$breakpoint-xs) {
+    padding: 12px;
+  }
 
   &__loader {
     display: flex;
@@ -127,7 +131,16 @@ const handleSave = async () => {
   column-gap: 16px;
   row-gap: 24px;
 
+  @media (max-width: globalBreakpoints.$breakpoint-sm) {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
   &__field {
+    @media (max-width: globalBreakpoints.$breakpoint-sm) {
+      grid-column: 1/-1;
+    }
+
     &_name {
     }
     &_username {
@@ -179,10 +192,25 @@ const handleSave = async () => {
       grid-template-columns: subgrid;
       grid-column: 1 / 3;
     }
-    &__icon {
+    &__social {
       display: flex;
       align-items: center;
       gap: 6px;
+    }
+
+    &__icon {
+      @media (max-width: globalBreakpoints.$breakpoint-xs) {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    &__name {
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 14px;
+      color: #fff;
+      font-size: clamp(12px, 1vw, 14px);
     }
   }
   &__footer {
@@ -196,6 +224,19 @@ const handleSave = async () => {
     font-family: var(--font-family);
     font-weight: 500;
     color: rgba(255, 255, 255, 0.5);
+
+    @media (max-width: globalBreakpoints.$breakpoint-sm) {
+      display: none;
+    }
+  }
+
+  :deep(.file-uploader) {
+    .file-uploader__dropzone,
+    .file-uploader__card {
+      @media (max-width: globalBreakpoints.$breakpoint-sm) {
+        width: 100%;
+      }
+    }
   }
 }
 </style>
