@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import VIcon from '@/atoms/icon/VIcon.vue'
+import { onClickOutside } from '@vueuse/core'
 
 const props = defineProps<{
   actions?: Array<{ icon: string; color: string; emit: string }>
 }>()
 
 const emit = defineEmits(['action-click'])
+const menuRef = ref(null)
 
 const defaultActions = [
   { icon: 'time', color: '#231F20', emit: 'time' },
@@ -16,6 +18,7 @@ const defaultActions = [
 
 const isOpen = ref(false)
 const toggleMenu = () => (isOpen.value = !isOpen.value)
+const triggerRef = ref(null)
 
 const getDelay = (index: number) => {
   if (isOpen.value) {
@@ -24,15 +27,23 @@ const getDelay = (index: number) => {
     return `${(defaultActions.length - 1 - index) * 0.1}s`
   }
 }
+
+onClickOutside(
+  menuRef,
+  () => {
+    if (isOpen.value) isOpen.value = false
+  },
+  { ignore: [triggerRef] },
+)
 </script>
 
 <template>
   <div :class="['art-card-menu', { 'art-card-menu__open': isOpen }]">
-    <button class="art-card-menu__trigger" @click.stop="toggleMenu">
+    <button class="art-card-menu__trigger" @click.stop="toggleMenu" ref="triggerRef">
       <VIcon name="menu" />
     </button>
 
-    <div class="art-card-menu__list">
+    <div class="art-card-menu__list" ref="menuRef">
       <button
         v-for="(action, index) in defaultActions"
         :key="index"

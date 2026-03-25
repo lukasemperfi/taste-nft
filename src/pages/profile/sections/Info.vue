@@ -64,7 +64,7 @@ const artData = ref({
       grid-template-columns: 1fr auto;
       grid-template-areas:
         'avatar actions'
-        'stats   button';
+        'stats   .';
       row-gap: 15px;
     }
   }
@@ -100,15 +100,6 @@ const artData = ref({
   :deep(.user-stats) {
     @media (max-width: $bp-sm) {
       grid-area: stats;
-    }
-  }
-
-  :deep(.taste-btn) {
-    padding: 0 32px;
-    font-size: clamp(12px, 1vw, 13px);
-
-    @media (max-width: $bp-sm) {
-      grid-area: button;
     }
   }
 

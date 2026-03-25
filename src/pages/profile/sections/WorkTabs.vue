@@ -8,6 +8,15 @@ import WorksList from '../components/WorksList.vue'
 import { artworks, artworksRandom } from '@/helpers/artworks'
 
 const activeTab = ref('created')
+
+const statuses = ['approved', 'approved', 'approved', 'on-moderation', 'declined'] as const
+
+const works = artworks.map((item) => ({
+  ...item,
+  status: statuses[Math.floor(Math.random() * statuses.length)],
+}))
+
+console.log(works)
 </script>
 <template>
   <div class="work-tabs app-container">
@@ -15,15 +24,18 @@ const activeTab = ref('created')
       <TabsList>
         <TabsTrigger id="created">Created </TabsTrigger>
         <TabsTrigger id="collected">Collected </TabsTrigger>
+        <TabsTrigger id="bids">Bids </TabsTrigger>
       </TabsList>
 
       <div class="tabs-content-container">
         <TabsPanel id="created">
-          <WorksList :list="artworks" />
+          <WorksList :list="works" />
         </TabsPanel>
-
         <TabsPanel id="collected">
-          <WorksList :list="artworksRandom" />
+          <WorksList :list="works" />
+        </TabsPanel>
+        <TabsPanel id="bids">
+          <WorksList :list="works" />
         </TabsPanel>
       </div>
     </Tabs>
