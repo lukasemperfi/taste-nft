@@ -18,7 +18,7 @@ const artData = ref({
   username: 'username',
   avatarUrl: 'https://i.pravatar.cc/150?u=1',
 })
-const showEditProfileModal = ref(false)
+const showEditProfileModal = ref(true)
 
 const onEditProfile = () => {
   console.log('clicked edit profile')
