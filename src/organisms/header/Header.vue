@@ -20,7 +20,7 @@ const currentUser = ref({
 })
 
 const isOpenConnectWalletModal = ref(false)
-const isOpenCreateArtworkModal = ref(false)
+const isOpenCreateArtworkModal = ref(true)
 const { isAuth, login, logout } = useAuth()
 const searchQuery = inject<string>('searchContext', '')
 

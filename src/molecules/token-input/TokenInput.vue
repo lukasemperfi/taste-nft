@@ -20,7 +20,6 @@ const {
 
 const model = defineModel<number | string>({
   default: 0,
-  // required: true,
   set(val) {
     const numericValue = String(val).replace(/[^\d]/g, '')
     return numericValue
