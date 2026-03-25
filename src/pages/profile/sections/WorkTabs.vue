@@ -6,6 +6,7 @@ import TabsPanel from '@/molecules/tabs/TabsPanel.vue'
 import TabsList from '@/molecules/tabs/TabsList.vue'
 import WorksList from '../components/WorksList.vue'
 import { artworks, artworksRandom } from '@/helpers/artworks'
+import type { MyArtworkCard } from '@/pages/profile/components/types'
 
 const activeTab = ref('created')
 
@@ -14,9 +15,7 @@ const statuses = ['approved', 'approved', 'approved', 'on-moderation', 'declined
 const works = artworks.map((item) => ({
   ...item,
   status: statuses[Math.floor(Math.random() * statuses.length)],
-}))
-
-console.log(works)
+})) as MyArtworkCard[]
 </script>
 <template>
   <div class="work-tabs app-container">

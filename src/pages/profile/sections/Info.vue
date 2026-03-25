@@ -35,6 +35,8 @@ const artData = ref({
             @share="() => console.log('Shared!')"
             @external="() => console.log('Link opened!')"
             @menu="() => console.log('Menu opened!')"
+            @edit-profile="() => console.log('Edit profile!')"
+            :show-menu="true"
           />
         </div>
       </template>

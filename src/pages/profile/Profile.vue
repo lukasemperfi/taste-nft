@@ -6,8 +6,6 @@ import WorkTabs from './sections/WorkTabs.vue'
 
 const route = useRoute()
 const userId = computed(() => route.params.id || '1')
-
-console.log('userId', userId.value)
 </script>
 
 <template>

@@ -76,6 +76,7 @@ onClickOutside(
           :select="select"
           :selected="selected"
           :is-open="isOpen"
+          :toggle="toggle"
         />
       </div>
     </Teleport>
