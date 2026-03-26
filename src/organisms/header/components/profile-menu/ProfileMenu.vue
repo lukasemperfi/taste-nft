@@ -45,7 +45,7 @@ const dynamicOffset = computed(() => {
       </div>
     </template>
 
-    <template #menu="{ isOpen }">
+    <template #menu="{ isOpen, toggle }">
       <div class="profile-menu__content">
         <div class="profile-menu__header">
           <UserIdentity :name="name" :username="username" size="md" :avatar-url="avatarUrl" />
@@ -61,7 +61,7 @@ const dynamicOffset = computed(() => {
           </div>
         </div>
         <p class="profile-menu__address">Address: {{ address }}</p>
-        <nav class="profile-menu__nav">
+        <nav class="profile-menu__nav" @click="toggle">
           <button class="profile-menu__link" @click="emit('profile')">My profile</button>
           <button class="profile-menu__link" @click="emit('balance-settings')">
             Balance settings

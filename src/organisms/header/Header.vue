@@ -10,6 +10,8 @@ import CreateArtworkModal from './components/create-artwork-modal/CreateArtworkM
 import { useAuth } from '@/helpers/useAuth'
 import { inject } from 'vue'
 import { useScrollLock } from '@vueuse/core'
+import { useRouter } from 'vue-router'
+import BalanceSettingModal from './components/balance-setting-modal/BalanceSettingModal.vue'
 
 const currentUser = ref({
   name: 'User Name',
@@ -20,9 +22,12 @@ const currentUser = ref({
 })
 
 const isOpenConnectWalletModal = ref(false)
-const isOpenCreateArtworkModal = ref(true)
-const { isAuth, login, logout } = useAuth()
+const isOpenCreateArtworkModal = ref(false)
+const isOpenBalanceSettingsModal = ref(true)
+
+const { isAuth, logout } = useAuth()
 const searchQuery = inject<string>('searchContext', '')
+const router = useRouter()
 
 const openConnectWalletModal = () => {
   isOpenConnectWalletModal.value = true
@@ -32,12 +37,16 @@ const openCreateArtworkModal = () => {
   isOpenCreateArtworkModal.value = true
 }
 
+const openBalanceSettingsModal = () => {
+  isOpenBalanceSettingsModal.value = true
+}
+
 const handleLogout = () => {
   logout()
 }
 
 const handleOpenProfile = () => {
-  console.log('Redirecting to profile...')
+  router.push({ name: 'profile', params: { id: '1' } })
 }
 
 const onSearch = (value: string) => {
@@ -73,7 +82,7 @@ const onClear = () => {
             v-bind="currentUser"
             @logout="handleLogout"
             @profile="handleOpenProfile"
-            @balance-settings="() => console.log('Settings')"
+            @balance-settings="openBalanceSettingsModal"
           />
         </div>
 
@@ -86,6 +95,7 @@ const onClear = () => {
   </header>
   <ConnectWalletModal v-model="isOpenConnectWalletModal" />
   <CreateArtworkModal v-model="isOpenCreateArtworkModal" />
+  <BalanceSettingModal v-model="isOpenBalanceSettingsModal" />
 </template>
 
 <style lang="scss" scoped>

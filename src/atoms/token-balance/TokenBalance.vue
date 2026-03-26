@@ -44,16 +44,18 @@ const { balance = '1,5M', tokenIcon = 'logo-2', size = 'md' } = defineProps<Prop
   }
 
   &_size_md {
+    gap: 10px;
     .token-balance__icon-wrapper {
       width: 32px;
       height: 32px;
     }
-    .token-balance_icon {
+    .token-balance__icon {
       width: 24px;
       height: 25px;
     }
     .token-balance__balance-text {
-      font-size: globalFunctions.fluidValue(14px, 16px, 375px, 1366px);
+      font-size: clamp(20px, 2.4vw, 32px);
+      transform: translateY(-3px);
     }
   }
 
