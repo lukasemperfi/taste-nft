@@ -20,7 +20,7 @@ withDefaults(defineProps<Props>(), {
     </div>
 
     <div class="user-identity__info">
-      <h3 class="user-identity__name">{{ name }}</h3>
+      <RouterLink to="/creator-profile/1" class="user-identity__name">{{ name }}</RouterLink>
       <span class="user-identity__username">@{{ username }}</span>
     </div>
   </div>

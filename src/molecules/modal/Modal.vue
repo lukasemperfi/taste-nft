@@ -1,13 +1,19 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, provide } from 'vue'
+import { onMounted, onUnmounted, provide, watch } from 'vue'
 import VIcon from '@/atoms/icon/VIcon.vue'
+import { useScrollLock } from '@vueuse/core'
 
 const isOpen = defineModel<boolean>({ default: false })
 defineOptions({
   inheritAttrs: false,
 })
-
 provide('modalContext', { isOpen })
+
+const isScrollLocked = useScrollLock(document.body)
+
+watch(isOpen, (val) => {
+  isScrollLocked.value = val
+})
 
 const close = () => {
   isOpen.value = false

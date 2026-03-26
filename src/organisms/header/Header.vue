@@ -23,7 +23,7 @@ const currentUser = ref({
 
 const isOpenConnectWalletModal = ref(false)
 const isOpenCreateArtworkModal = ref(false)
-const isOpenBalanceSettingsModal = ref(true)
+const isOpenBalanceSettingsModal = ref(false)
 
 const { isAuth, logout } = useAuth()
 const searchQuery = inject<string>('searchContext', '')
