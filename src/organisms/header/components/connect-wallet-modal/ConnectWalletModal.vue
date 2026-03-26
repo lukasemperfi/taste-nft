@@ -9,7 +9,7 @@ import { delay } from '@/helpers/delay'
 
 const isOpen = defineModel<boolean>()
 const isLoading = ref(false)
-const { isAuth, login, logout } = useAuth()
+const { login } = useAuth()
 
 const handleConnectWallet = async () => {
   isLoading.value = true
@@ -27,9 +27,21 @@ const handleConnectWallet = async () => {
       <div v-if="!isLoading" class="connect-wallet">
         <div class="connect-wallet__main">
           <div class="guide-steps">
-            <GuideStepCard step-number="1" description="Описание что нужно сделать" />
-            <GuideStepCard step-number="2" description="Описание что нужно сделать" />
-            <GuideStepCard step-number="3" description="Описание что нужно сделать" />
+            <GuideStepCard
+              step-number="1"
+              description="Описание что нужно сделать"
+              video-id="dQw4w9WgXcQ"
+            />
+            <GuideStepCard
+              step-number="2"
+              description="Описание что нужно сделать"
+              video-id="Ct6BUPvE2sM"
+            />
+            <GuideStepCard
+              step-number="3"
+              description="Описание что нужно сделать"
+              video-id="1BTJ_n9Oqs0"
+            />
           </div>
         </div>
         <div class="connect-wallet__footer">

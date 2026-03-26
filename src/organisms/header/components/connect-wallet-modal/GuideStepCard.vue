@@ -1,37 +1,75 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+import Modal from '@/molecules/modal/Modal.vue'
+
 interface Props {
   stepNumber: number | string
   description: string
   videoThumbnail?: string
+  videoId?: string
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 const emit = defineEmits(['play'])
+
+const isPlaying = ref(false)
+
+const youtubeEmbedUrl = computed(() => {
+  return `https://www.youtube.com/embed/${props.videoId}?autoplay=1`
+})
+
+const thumbnailUrl = computed(() => {
+  return `https://img.youtube.com/vi/${props.videoId}/hqdefault.jpg`
+})
 </script>
 
 <template>
   <div class="guide-card">
-    <div class="guide-card__preview">
-      <img v-if="videoThumbnail" :src="videoThumbnail" class="guide-card__image" alt="Thumbnail" />
-      <div v-else class="guide-card__placeholder"></div>
+    <div class="guide-card__preview" @click="isPlaying = true">
+      <img v-if="!isPlaying" :src="thumbnailUrl" class="guide-card__image" alt="Video preview" />
 
-      <button class="guide-card__play-btn" @click="emit('play')">
+      <button v-if="!isPlaying" class="guide-card__play-btn">
         <span class="guide-card__play-icon"></span>
       </button>
 
       <div class="guide-card__badge">
-        <span class="guide-card__step-num">{{ stepNumber }}.</span>
+        <span class="guide-card__step-num"> {{ stepNumber }}. </span>
       </div>
     </div>
 
     <p class="guide-card__description">
       {{ description }}
     </p>
+
+    <Modal v-model="isPlaying" style="background-color: transparent; width: auto; height: auto">
+      <template #header-center>Step {{ stepNumber }}</template>
+      <template #content>
+        <div class="guide-card__video-container">
+          <iframe
+            class="guide-card__iframe"
+            :src="youtubeEmbedUrl"
+            title="YouTube video player"
+            frameborder="0"
+            allow="
+              accelerometer;
+              autoplay;
+              clipboard-write;
+              encrypted-media;
+              gyroscope;
+              picture-in-picture;
+              web-share;
+            "
+            allowfullscreen
+          ></iframe>
+        </div>
+      </template>
+    </Modal>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .guide-card {
+  $bp-xs: 560px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -50,6 +88,8 @@ const emit = defineEmits(['play'])
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
+    user-select: none;
   }
 
   &__step-num {
@@ -70,6 +110,7 @@ const emit = defineEmits(['play'])
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
   }
 
   &__placeholder {
@@ -81,6 +122,8 @@ const emit = defineEmits(['play'])
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: globalFunctions.fluidValue(12px, 16px, 375px, 1366px);
+    overflow: hidden;
   }
 
   &__play-btn {
@@ -121,6 +164,20 @@ const emit = defineEmits(['play'])
     line-height: 1.15;
     text-align: center;
     color: #ffffff;
+  }
+
+  &__video-container {
+    margin-top: 10px;
+  }
+
+  &__iframe {
+    width: 516px;
+    height: 315px;
+
+    @media (max-width: $bp-xs) {
+      width: 351px;
+      height: 300px;
+    }
   }
 }
 </style>
