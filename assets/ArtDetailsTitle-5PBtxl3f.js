@@ -1,0 +1,1 @@
+import{e,f as s,g as a,t as o,_ as r}from"./index-Bh0zAr-b.js";const c={class:"art-title"},i=e({__name:"ArtDetailsTitle",props:{title:{}},setup(t){return(n,_)=>(s(),a("h1",c,o(t.title),1))}}),p=r(i,[["__scopeId","data-v-67a35f85"]]);export{p as A};

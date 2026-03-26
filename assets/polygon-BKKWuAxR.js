@@ -1,1 +1,0 @@
-import{o,c as t,a as n}from"./index-BGPSuHxv.js";const l={xmlns:"http://www.w3.org/2000/svg",width:"7",height:"4",fill:"none",viewBox:"0 0 7 4"};function r(s,e){return o(),t("svg",l,[...e[0]||(e[0]=[n("path",{fill:"#fff",d:"M3.464 3.75 0 0h6.928z"},null,-1)])])}const f={render:r};export{f as default,r as render};
