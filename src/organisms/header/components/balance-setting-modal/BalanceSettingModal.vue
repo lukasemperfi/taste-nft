@@ -4,40 +4,99 @@ import Button from '@/atoms/button/Button.vue'
 import { ref } from 'vue'
 import { delay } from '@/helpers/delay'
 import TokenBalance from '@/atoms/token-balance/TokenBalance.vue'
+import Icon from '@/atoms/icon/VIcon.vue'
+import FormField from '@/atoms/form-controls/form-field/FormField.vue'
+import TokenInput from '@/molecules/token-input/TokenInput.vue'
+
+type Views = 'default' | 'swap' | 'deposit' | 'withdraw'
+
+const views = {
+  default: 'default',
+  swap: 'swap',
+  deposit: 'deposit',
+  withdraw: 'withdraw',
+}
 
 const isOpen = defineModel<boolean>()
 const isLoading = ref(false)
+const currentView = ref('default')
 
-// const handleConnectWallet = async () => {
-//   isLoading.value = true
-//   await delay(2000)
-//   login()
-//   isOpen.value = false
-//   isLoading.value = false
-// }
+const back = () => {
+  currentView.value = 'default'
+}
+
+const swap = () => {
+  currentView.value = 'swap'
+}
+
+const deposit = () => {
+  currentView.value = 'deposit'
+}
+
+const withdraw = () => {
+  currentView.value = 'withdraw'
+}
+
+const closeModal = () => {
+  isOpen.value = false
+  resetState()
+}
+
+const resetState = () => {
+  currentView.value = 'default'
+}
 </script>
 
 <template>
   <Modal v-bind="$attrs" v-model="isOpen">
-    <template #header-center>Balance settings</template>
+    <template v-if="currentView !== 'default'" #header-left-default>
+      <button class="back-button" @click="back">
+        <Icon name="back" />
+      </button>
+    </template>
+    <template #header-center>
+      <span v-if="currentView === 'default'">Balance setting</span>
+      <span v-if="currentView === 'swap'">Swap to TASTE</span>
+      <span v-if="currentView === 'deposit'">Deposit to TASTE</span>
+      <span v-if="currentView === 'withdraw'">Withdraw</span>
+    </template>
     <template #content>
       <div class="modal-content">
-        <div class="balance-setting">
+        <div v-if="currentView === 'default'" class="balance-setting">
           <div class="tokens">
             <div class="tokens__item">
               <TokenBalance size="md" />
               <div class="tokens__actions">
-                <button class="tokens__action">Withdraw</button>
+                <button class="tokens__action" @click="withdraw">Withdraw</button>
               </div>
             </div>
             <div class="tokens__item">
               <TokenBalance size="md" token-icon="pattern" />
               <div class="tokens__actions">
-                <button class="tokens__action">Swap to TASTE</button>
-                <button class="tokens__action">Deposit</button>
-                <button class="tokens__action">Withdraw</button>
+                <button class="tokens__action" @click="swap">Swap to TASTE</button>
+                <button class="tokens__action" @click="deposit">Deposit</button>
+                <button class="tokens__action" @click="withdraw">Withdraw</button>
               </div>
             </div>
+          </div>
+        </div>
+        <div v-else class="get-tokens">
+          <FormField class="get-tokens__field">
+            <template #label>You will get</template>
+            <TokenInput
+              class="get-tokens__input"
+              symbol="TASTE"
+              fiat-value="1308.54$"
+              :show-balance="true"
+              token-icon="logo-3"
+            />
+          </FormField>
+          <div class="get-tokens__actions">
+            <Button class="get-tokens__action" @click="closeModal">
+              <span v-if="currentView === 'swap'">Swap</span>
+              <span v-if="currentView === 'deposit'">Deposit</span>
+              <span v-if="currentView === 'withdraw'">Confirm</span>
+            </Button>
           </div>
         </div>
       </div>
@@ -50,6 +109,10 @@ const isLoading = ref(false)
   padding-top: 25px;
   padding-bottom: 7px;
   padding-inline: clamp(12px, 1.76vw, 24px);
+}
+
+.back-button {
+  position: absolute;
 }
 
 .balance-setting {
@@ -81,6 +144,19 @@ const isLoading = ref(false)
       white-space: nowrap;
       cursor: pointer;
     }
+  }
+}
+
+.get-tokens {
+  &__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+  }
+
+  &__action {
+    width: 157px;
   }
 }
 </style>

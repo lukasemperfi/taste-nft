@@ -19,7 +19,7 @@ const {
 } = defineProps<Props>()
 
 const model = defineModel<number | string>({
-  default: 0,
+  default: 10000000,
   set(val) {
     const numericValue = String(val).replace(/[^\d]/g, '')
     return numericValue
@@ -41,7 +41,7 @@ const cutedSymbol = computed(() => {
       <input v-model="model" type="text" class="token-input__input" inputmode="numeric" />
       <span class="token-input__symbol">{{ cutedSymbol }}</span>
     </div>
-    <TokenBalance v-if="showBalance" :balance="balance" :token-icon="tokenIcon" />
+    <TokenBalance v-if="showBalance" :balance="balance" :token-icon="tokenIcon" size="sm" />
     <div class="token-input__info">
       <span class="token-input__fiat">({{ fiatValue }})</span>
     </div>

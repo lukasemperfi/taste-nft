@@ -27,6 +27,7 @@ onUnmounted(() => document.removeEventListener('keydown', handleEscape))
       <div v-if="isOpen" class="modal-overlay" @click.self="close">
         <div class="modal-container" v-bind="$attrs">
           <header class="modal-header">
+            <slot v-if="$slots['header-left-default']" name="header-left-default" />
             <div v-if="$slots['header-left']" class="modal-header__left">
               <slot name="header-left" />
             </div>
